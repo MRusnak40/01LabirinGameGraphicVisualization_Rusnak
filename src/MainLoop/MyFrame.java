@@ -2,39 +2,58 @@ package MainLoop;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class MyFrame extends JFrame {
+
     Movement movement = new Movement(this);
-    JLabel jLabel;
+    JLabel playerLabel;
     ImageIcon icon;
+    JLabel enemyLabel;
+private int widthWindow;
+private int heightWindow;
+
+
 
     public MyFrame() throws HeadlessException {
-
+widthWindow=1500;
+heightWindow=900;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Advanture labirint");
-        this.setSize(1500, 900);
+        this.setSize(widthWindow, heightWindow);
+
         this.addKeyListener(movement);
         this.setLayout(null);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-
-        icon = new ImageIcon("Files/pixil-frame-0 (3).png");
-        jLabel = new JLabel();
-        jLabel.setBounds(0, 0, 40, 40);
-        jLabel.setIcon(icon);
-        // jLabel.setBackground(Color.BLACK);
-        //jLabel.setOpaque(true);
+//set player size
 
 
-        this.add(jLabel);
+        setPlayer();
+        setEnemy();
 
-this.getContentPane().setBackground(Color.BLUE);
+        this.add(playerLabel);
+        this.add(enemyLabel);
+
+        this.getContentPane().setBackground(Color.BLUE);
         this.setVisible(true);
     }
 
+
+    public void setPlayer() {
+        icon = new ImageIcon("Files/Player.png");
+        playerLabel = new JLabel();
+        playerLabel.setBounds(0, 0, 40, 40);
+        playerLabel.setIcon(icon);
+        // jLabel.setBackground(Color.BLACK);
+        //jLabel.setOpaque(true);
+    }
+
+    public void setEnemy() {
+        icon = new ImageIcon("Files/enemy.png");
+        enemyLabel = new JLabel();
+        enemyLabel.setBounds(widthWindow/2, heightWindow/2, 40, 40);
+        enemyLabel.setIcon(icon);
+    }
 
 
 

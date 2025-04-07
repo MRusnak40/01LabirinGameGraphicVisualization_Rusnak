@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
 
 public class Movement implements KeyListener {
     MyFrame frame;
-
+private int currentx;
+private int currenty;
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -15,17 +16,17 @@ public class Movement implements KeyListener {
 
 
             case 'w':
-                frame.jLabel.setLocation(frame.jLabel.getX(), frame.jLabel.getY() - 10);
+                frame.playerLabel.setLocation(frame.playerLabel.getX(), frame.playerLabel.getY() - 10);
                 break;
             case 's':
-                frame.jLabel.setLocation(frame.jLabel.getX(), frame.jLabel.getY() + 10);
+                frame.playerLabel.setLocation(frame.playerLabel.getX(), frame.playerLabel.getY() + 10);
                 break;
             case 'd':
-                frame.jLabel.setLocation(frame.jLabel.getX() + 10, frame.jLabel.getY());
+                frame.playerLabel.setLocation(frame.playerLabel.getX() + 10, frame.playerLabel.getY());
                 break;
 
             case 'a':
-                frame.jLabel.setLocation(frame.jLabel.getX() - 10, frame.jLabel.getY());
+                frame.playerLabel.setLocation(frame.playerLabel.getX() - 10, frame.playerLabel.getY());
                 break;
 
         }
@@ -43,8 +44,11 @@ public class Movement implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        /*
         System.out.println("Key released:" + e.getKeyChar());
         System.out.println("Key released:" + e.getKeyCode());
+
+         */
     }
 
 
