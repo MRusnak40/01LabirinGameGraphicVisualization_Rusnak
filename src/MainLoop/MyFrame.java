@@ -1,5 +1,7 @@
 package MainLoop;
 
+import Map.Walls;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,14 +11,14 @@ public class MyFrame extends JFrame {
     JLabel playerLabel;
     ImageIcon icon;
     JLabel enemyLabel;
-private int widthWindow;
-private int heightWindow;
-
+    private int widthWindow;
+    private int heightWindow;
+    Walls walls = new Walls(this);
 
 
     public MyFrame() throws HeadlessException {
-widthWindow=1500;
-heightWindow=900;
+        widthWindow = 1500;
+        heightWindow = 900;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
@@ -51,12 +53,9 @@ heightWindow=900;
     public void setEnemy() {
         icon = new ImageIcon("Files/enemy.png");
         enemyLabel = new JLabel();
-        enemyLabel.setBounds(widthWindow/2, heightWindow/2, 40, 40);
+        enemyLabel.setBounds(widthWindow / 2, heightWindow / 2, 40, 40);
         enemyLabel.setIcon(icon);
     }
-
-
-
 
 
 }
