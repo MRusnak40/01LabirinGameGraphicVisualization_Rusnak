@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Movement implements KeyListener {
+
     MyFrame frame;
 private int currentx;
 private int currenty;
@@ -44,12 +45,17 @@ private int currenty;
 
     @Override
     public void keyReleased(KeyEvent e) {
-        /*
+
         System.out.println("Key released:" + e.getKeyChar());
         System.out.println("Key released:" + e.getKeyCode());
 
-         */
+
     }
+
+
+
+
+
 
 
 }

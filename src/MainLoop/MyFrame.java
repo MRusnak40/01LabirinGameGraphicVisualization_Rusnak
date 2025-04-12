@@ -1,61 +1,162 @@
 package MainLoop;
 
+import Enities.Enemy;
+import Enities.Player;
 import Map.Walls;
+import PreImplements.Box;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class MyFrame extends JFrame {
 
     Movement movement = new Movement(this);
     JLabel playerLabel;
     ImageIcon icon;
-    JLabel enemyLabel;
+    Image image;
+    Graphics graphics;
     private int widthWindow;
     private int heightWindow;
-    Walls walls = new Walls(this);
+    Walls walls = new Walls();
+    Player player;
+    Enemy enemy;
+    public boolean gameOver = false;
+    Image images;
+    BufferedImage bufferedImage;
 
 
     public MyFrame() throws HeadlessException {
-        widthWindow = 1500;
-        heightWindow = 900;
+        widthWindow = 1520;
+        heightWindow = 1000;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
 
-        this.addKeyListener(movement);
+        createPlayers();
+
+        this.addKeyListener(new Al());
+
         this.setLayout(null);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 //set player size
 
 
-        setPlayer();
-        setEnemy();
+        walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
 
-        this.add(playerLabel);
-        this.add(enemyLabel);
+        this.setLayout(new BorderLayout());
+        walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
+        this.add(walls, BorderLayout.CENTER);
+
 
         this.getContentPane().setBackground(Color.BLUE);
         this.setVisible(true);
     }
 
 
-    public void setPlayer() {
-        icon = new ImageIcon("Files/Player.png");
-        playerLabel = new JLabel();
-        playerLabel.setBounds(0, 0, 40, 40);
-        playerLabel.setIcon(icon);
-        // jLabel.setBackground(Color.BLACK);
-        //jLabel.setOpaque(true);
+
+
+
+    /*
+    public void update(Graphics g) {
+        paint(g); // zabraňuje blikání tím, že nečistí pozadí
     }
 
-    public void setEnemy() {
-        icon = new ImageIcon("Files/enemy.png");
-        enemyLabel = new JLabel();
-        enemyLabel.setBounds(widthWindow / 2, heightWindow / 2, 40, 40);
-        enemyLabel.setIcon(icon);
+
+
+    public void paint(Graphics g) {
+        bufferedImage = new BufferedImage(widthWindow, heightWindow, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = bufferedImage.createGraphics();
+
+        image = createImage(this.getWidth(), this.getHeight());
+        graphics = image.getGraphics();
+
+
+        //g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
+
+        g2.drawImage(bufferedImage, 0, 0, this); // zobrazíme vykreslený obraz
+
+
+        player.draw(g);
+        enemy.draw(g);
+
+
+        if (gameOver == true) {
+            g.setColor(Color.red);
+            g.setFont(new Font("Arial", Font.BOLD, 100));
+            g.drawString("Game Over", 100, 200);
+        }
+        g.dispose();
+
     }
 
+
+     */
+
+
+    @Override
+    public void paint(Graphics g) {
+        // Vytvoření off-screen bufferu (pouze JEDNOU, ne pokaždé v paint)
+        if (bufferedImage == null) {
+            bufferedImage = new BufferedImage(widthWindow, heightWindow, BufferedImage.TYPE_INT_ARGB);
+        }
+
+        Graphics2D g2 = bufferedImage.createGraphics();
+
+        // Vyčisti pozadí
+        g2.setColor(getBackground());
+        g2.fillRect(0, 0, getWidth(), getHeight());
+
+        // Vykresli herní objekty
+        walls.paint(g2);
+        player.draw(g2);
+        enemy.draw(g2);
+
+        // Game over text
+        if (gameOver) {
+            g2.setColor(Color.RED);
+            g2.setFont(new Font("Arial", Font.BOLD, 100));
+            g2.drawString("Game Over", 100, 200);
+        }
+
+
+        // Přenes obraz z bufferu na obrazovku
+        g.drawImage(bufferedImage, 0, 0, this);
+
+        g2.dispose(); // ukončíme práci s g2, ne s g!
+    }
+
+
+    public void checkColision() {
+        if (player.intersects(enemy)) {
+            gameOver = true;
+
+        }
+    }
+
+
+    public class Al extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            player.keyPressed(e);
+            checkColision();
+
+            repaint();
+
+        }
+    }
+
+
+    public void createPlayers() {
+        player = new Player(100, 300, 20, 20, Color.CYAN, icon);
+        enemy = new Enemy(600, 600, 20, 20, Color.RED);
+
+
+    }
 
 }

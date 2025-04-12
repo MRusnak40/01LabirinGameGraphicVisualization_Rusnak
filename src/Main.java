@@ -6,10 +6,10 @@ import PreImplements.Frame;
 public class Main {
     public static void main(String[] args) {
 
+MyFrame frame = new MyFrame();
 
-        //new MyFrame();
 
-        Frame frame = new Frame();
+      //  Frame frame = new Frame();
 
 
 //do player dat  pohyb zvlast jak v enemy

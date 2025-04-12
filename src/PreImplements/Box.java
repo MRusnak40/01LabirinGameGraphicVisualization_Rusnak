@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Box extends Rectangle {
-
+/*
     Color color;
 
 
@@ -38,21 +38,7 @@ public class Box extends Rectangle {
         }
 
 
-/*
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            this.y -= 10;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            this.y += 10;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.x =x- 10;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.x=x + 10;
-        }
 
- */
 
     }
 
@@ -61,4 +47,6 @@ public class Box extends Rectangle {
         g.fillRect(this.x, this.y, this.width, this.height);
 
     }
+
+ */
 }
