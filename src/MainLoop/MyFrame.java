@@ -31,6 +31,8 @@ public class MyFrame extends JFrame {
 
 
     public MyFrame() throws HeadlessException {
+
+
         widthWindow = 1520;
         heightWindow = 1000;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +41,7 @@ public class MyFrame extends JFrame {
 
         createPlayers();
 
-        this.addKeyListener(new Al());
+
 
         this.setLayout(null);
         this.setResizable(false);
@@ -53,7 +55,7 @@ public class MyFrame extends JFrame {
         walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
         this.add(walls, BorderLayout.CENTER);
 
-
+        this.addKeyListener(new Al());
         this.getContentPane().setBackground(Color.BLUE);
         this.setVisible(true);
     }
@@ -132,11 +134,14 @@ public class MyFrame extends JFrame {
     }
 
 
-    public void checkColision() {
+    public boolean checkColision() {
         if (player.intersects(enemy)) {
-            gameOver = true;
+
+
+            return true;
 
         }
+        return false;
     }
 
 
@@ -144,8 +149,8 @@ public class MyFrame extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
-            checkColision();
-
+            gameOver = checkColision();
+            System.out.println(player.getX()+" "+player.getY());
             repaint();
 
         }
@@ -153,8 +158,8 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(100, 300, 20, 20, Color.CYAN, icon);
-        enemy = new Enemy(600, 600, 20, 20, Color.RED);
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon);
+        enemy = new Enemy(1450, 930, 20, 20, Color.RED);
 
 
     }
