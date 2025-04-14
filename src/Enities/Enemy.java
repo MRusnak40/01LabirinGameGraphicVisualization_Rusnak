@@ -32,7 +32,9 @@ public void movement(){
 }
 
 
-
+    public void update() {
+        // Update enemy position or logic
+    }
 
 
 

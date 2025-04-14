@@ -14,7 +14,7 @@ import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 
 public class MyFrame extends JFrame {
-
+    private GameLoop gameLoop;
     Movement movement = new Movement(this);
     JLabel playerLabel;
     ImageIcon icon;
@@ -57,7 +57,19 @@ public class MyFrame extends JFrame {
 
         this.addKeyListener(new Al());
         this.getContentPane().setBackground(Color.BLUE);
+
+        ImageIcon imageIcon = new ImageIcon("Files/betterQualityFrameIcon.png");
+        setIconImage(imageIcon.getImage());
         this.setVisible(true);
+
+
+
+/*
+        // Start the game loop
+        gameLoop = new GameLoop(this);
+        new Thread(gameLoop).start();
+
+ */
     }
 
 
@@ -150,7 +162,7 @@ public class MyFrame extends JFrame {
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
             gameOver = checkColision();
-            System.out.println(player.getX()+" "+player.getY());
+
             repaint();
 
         }
@@ -162,6 +174,12 @@ public class MyFrame extends JFrame {
         enemy = new Enemy(1450, 930, 20, 20, Color.RED);
 
 
+    }
+    public void update() {
+        // Update game logic here
+        player.update(); // Update player logic
+        enemy.update(); // Update enemy logic
+        gameOver = checkColision(); // Check for collisions
     }
 
 }

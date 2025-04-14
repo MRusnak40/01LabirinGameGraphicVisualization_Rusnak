@@ -105,6 +105,8 @@ public class Player extends Rectangle {
         // g.fillRect(this.x, this.y, this.width, this.height);
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
     }
-
+    public void update() {
+        // Update enemy position or logic
+    }
 
 }

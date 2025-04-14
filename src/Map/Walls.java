@@ -13,7 +13,9 @@ public class Walls extends JPanel {
     private static final int SCREEN_WIDTH = 1500; // Šířka obrazovky
     private static final int SCREEN_HEIGHT = 1000; // Výška obrazovky
     private BufferedImage wallTexture; // Textura zdi
-
+    private BufferedImage roadTexture;
+    private BufferedImage finishTexture;
+    private BufferedImage doorTexture;
     // Labyrint (1 = wall, 0 = road)
     private final int[][] maze = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -62,11 +64,15 @@ public class Walls extends JPanel {
 //paints the walss
         for (int row = 0; row < maze.length; row++) {
             for (int col = 0; col < maze[row].length; col++) {
-                if (maze[row][col] == 1) { // Zeď
+                if (maze[row][col] == 1) { // wall
                     g2d.drawImage(wallTexture, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, null);
-                } else { // Cesta
+                } else if(maze[row][col] == 0){ // road
                     g2d.setColor(Color.WHITE);
                     g2d.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                } else if(maze[row][col] == 2){
+
+                } else if(maze[row][col] == 3){
+
                 }
             }
         }
