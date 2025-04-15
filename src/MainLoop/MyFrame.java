@@ -41,7 +41,7 @@ public class MyFrame extends JFrame {
 
         createPlayers();
 
-
+        this.setBackground(Color.BLACK);
 
         this.setLayout(null);
         this.setResizable(false);
@@ -170,14 +170,15 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(1250, 930, 20, 20, Color.CYAN, icon);
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon,walls);
         enemy = new Enemy(1450, 930, 20, 20, Color.RED);
 
 
     }
+
     public void update() {
         // Update game logic here
-        player.update(); // Update player logic
+       // player.update(); // Update player logic
         enemy.update(); // Update enemy logic
         gameOver = checkColision(); // Check for collisions
     }

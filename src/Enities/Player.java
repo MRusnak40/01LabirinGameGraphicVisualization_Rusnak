@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class Player extends Rectangle {
 
-
+Walls wall;
     Color color;
     public boolean isAlive;
     public String name;
@@ -18,15 +18,16 @@ public class Player extends Rectangle {
     public int currenty;
     public ImageIcon imageIcon;
     public final int speed = 15;
+    public boolean isOnEndPlayer = false;
 
-
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon) {
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon,Walls wall) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.color = color;
         this.imageIcon = imageIcon;
+        this.wall = wall;
 
     }
 
@@ -60,7 +61,7 @@ public class Player extends Rectangle {
         int col = nextX / cellSize;
         int row = nextY / cellSize;
 
-        // Ochrana proti IndexOutOfBounds
+        // save from IndexOutOfBounds
         if (row >= 0 && row < maze.length && col >= 0 && col < maze[0].length) {
             if (maze[row][col] == 0) { // 0 = cesta
                 x = nextX;
@@ -68,34 +69,30 @@ public class Player extends Rectangle {
 
                 currentx = x;
                 currenty = y;
+
+            } else if (maze[row][col] == 2) {
+
+                isOnEndPlayer = true;
+
+            } else if (maze[row][col] == 3) {
+
+
+
+
+            } else if (maze[row][col] == 4) {
+
+                wall.maze[row][col] = 0;
+
+
+            } else if (maze[row][col] == 5) {
+
+            } else if (maze[row][col] == 6) {
+
             }
-            // Jinak nic – je tam zeď, nepohne se
+
         }
     }
-/*
-    public void keyPressed(KeyEvent e) {
 
-        switch (e.getKeyCode()) {
-
-            case KeyEvent.VK_LEFT:
-                this.x -= 10;
-                break;
-            case KeyEvent.VK_RIGHT:
-                this.x += 10;
-                break;
-
-            case KeyEvent.VK_UP:
-                this.y -= 10;
-                break;
-            case KeyEvent.VK_DOWN:
-                this.y += 10;
-                break;
-        }
-
-
-    }
-
- */
 
     public void draw(Graphics g) {
         imageIcon = new ImageIcon("Files/Player.png");
@@ -105,8 +102,12 @@ public class Player extends Rectangle {
         // g.fillRect(this.x, this.y, this.width, this.height);
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
     }
+
     public void update() {
         // Update enemy position or logic
     }
+
+
+
 
 }
