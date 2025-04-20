@@ -1,3 +1,4 @@
+import Enities.FollowingPlayer;
 import MainLoop.GameLoop;
 import MainLoop.MyFrame;
 import PreImplements.Frame;
@@ -7,10 +8,23 @@ import PreImplements.Frame;
 public class Main {
     public static void main(String[] args) {
 
-
-        GameLoop loop = new GameLoop(new MyFrame());
+        MyFrame frame = new MyFrame();
+        GameLoop loop = new GameLoop(frame);
+        FollowingPlayer followingPlayer = new FollowingPlayer(frame,loop);
         Thread thread = new Thread(loop);
+        Thread thread2 = new Thread(followingPlayer);
+
         thread.start();
+        thread2.start();
+
+        try {
+            thread.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
         //  Frame frame = new Frame();
 
 

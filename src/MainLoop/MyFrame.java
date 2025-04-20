@@ -25,14 +25,14 @@ public class MyFrame extends JFrame {
     Walls walls = new Walls();
     Player player;
     Enemy enemy;
-    public boolean gameOver = false;
+    public boolean gameOver;
     Image images;
     BufferedImage bufferedImage;
-
+    Graphics2D g2;
 
     public MyFrame() throws HeadlessException {
 
-
+        gameOver = false;
         widthWindow = 1520;
         heightWindow = 1000;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,13 +131,13 @@ public class MyFrame extends JFrame {
         player.draw(g2);
         enemy.draw(g2);
 
+
         // Game over text
         if (gameOver) {
             g2.setColor(Color.RED);
             g2.setFont(new Font("Arial", Font.BOLD, 100));
             g2.drawString("Game Over", 100, 200);
         }
-
 
         // Přenes obraz z bufferu na obrazovku
         g.drawImage(bufferedImage, 0, 0, this);
@@ -152,6 +152,8 @@ public class MyFrame extends JFrame {
 
             return true;
 
+        } else if (enemy.intersects(player)) {
+            return true;
         }
         return false;
     }
@@ -161,6 +163,7 @@ public class MyFrame extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
+
             gameOver = checkColision();
 
             repaint();
@@ -170,17 +173,30 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(1250, 930, 20, 20, Color.CYAN, icon,walls);
-        enemy = new Enemy(1450, 930, 20, 20, Color.RED);
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this);
+        enemy = new Enemy(1450, 930, 20, 20, Color.RED, this.player, this);
 
 
     }
 
+    public void updateEnemies() {
+        enemy.update();
+    }
+
     public void update() {
+
         // Update game logic here
-       // player.update(); // Update player logic
-        enemy.update(); // Update enemy logic
-        gameOver = checkColision(); // Check for collisions
+
+        player.update(); // Update player logic
+
+       // enemy.update();
+        gameOver = checkColision();
+
+
+        // Update enemy logic
+        // Check for collisions
+
+        //System.out.println(player.listOfTracks.size());
     }
 
 }

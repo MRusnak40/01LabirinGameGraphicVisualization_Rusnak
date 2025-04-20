@@ -6,10 +6,11 @@ import Map.Walls;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Player extends Rectangle {
 
-Walls wall;
+    Walls wall;
     Color color;
     public boolean isAlive;
     public String name;
@@ -19,8 +20,9 @@ Walls wall;
     public ImageIcon imageIcon;
     public final int speed = 15;
     public boolean isOnEndPlayer = false;
-
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon,Walls wall) {
+    public ArrayList<Track> listOfTracks;
+MyFrame frame;
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall,MyFrame frame) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -28,7 +30,8 @@ Walls wall;
         this.color = color;
         this.imageIcon = imageIcon;
         this.wall = wall;
-
+        this.listOfTracks = new ArrayList<>();
+        this.frame = frame;
     }
 
 
@@ -39,6 +42,11 @@ Walls wall;
 
         int nextX = x;
         int nextY = y;
+
+
+        //creating list where enemy will follow
+        listOfTracks.add(new Track(nextX, nextY));
+
 
         // Ovládání (zjisti novou pozici před pohybem)
         switch (e.getKeyCode()) {
@@ -77,8 +85,6 @@ Walls wall;
             } else if (maze[row][col] == 3) {
 
 
-
-
             } else if (maze[row][col] == 4) {
 
                 wall.maze[row][col] = 0;
@@ -101,13 +107,13 @@ Walls wall;
         // g.setColor(this.color);
         // g.fillRect(this.x, this.y, this.width, this.height);
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
+
     }
 
     public void update() {
         // Update enemy position or logic
+
     }
-
-
 
 
 }
