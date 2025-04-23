@@ -2,6 +2,7 @@ package MainLoop;
 
 import Enities.Enemy;
 import Enities.Player;
+import Map.Doors;
 import Map.Walls;
 import PreImplements.Box;
 
@@ -15,7 +16,7 @@ import java.awt.image.ImageProducer;
 
 public class MyFrame extends JFrame {
     private GameLoop gameLoop;
-    Movement movement = new Movement(this);
+
     JLabel playerLabel;
     ImageIcon icon;
     Image image;
@@ -63,13 +64,6 @@ public class MyFrame extends JFrame {
         this.setVisible(true);
 
 
-
-/*
-        // Start the game loop
-        gameLoop = new GameLoop(this);
-        new Thread(gameLoop).start();
-
- */
     }
 
 
@@ -120,7 +114,7 @@ public class MyFrame extends JFrame {
             bufferedImage = new BufferedImage(widthWindow, heightWindow, BufferedImage.TYPE_INT_ARGB);
         }
 
-        Graphics2D g2 = bufferedImage.createGraphics();
+        g2 = bufferedImage.createGraphics();
 
         // Vyčisti pozadí
         g2.setColor(getBackground());
@@ -131,13 +125,8 @@ public class MyFrame extends JFrame {
         player.draw(g2);
         enemy.draw(g2);
 
+        endText();
 
-        // Game over text
-        if (gameOver) {
-            g2.setColor(Color.RED);
-            g2.setFont(new Font("Arial", Font.BOLD, 100));
-            g2.drawString("Game Over", 100, 200);
-        }
 
         // Přenes obraz z bufferu na obrazovku
         g.drawImage(bufferedImage, 0, 0, this);
@@ -145,17 +134,29 @@ public class MyFrame extends JFrame {
         g2.dispose(); // ukončíme práci s g2, ne s g!
     }
 
+    public void endText() {
+        // Game over text
+        if (gameOver) {
+            g2.setColor(Color.RED);
+            g2.setFont(new Font("Arial", Font.BOLD, 250));
+            g2.drawString("Game Over", 100, 800);
 
-    public boolean checkColision() {
-        if (player.intersects(enemy)) {
-
-
-            return true;
-
-        } else if (enemy.intersects(player)) {
-            return true;
         }
-        return false;
+    }
+
+
+    public void checkColision() {
+        if (player.intersects(enemy)) {
+            gameOver=true;
+            System.out.println("Colision");
+        } else if (enemy.intersects(player)) {
+            System.out.println("Colision");
+            gameOver=true;
+        }else {
+            gameOver=false;
+        }
+
+
     }
 
 
@@ -164,7 +165,7 @@ public class MyFrame extends JFrame {
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
 
-            gameOver = checkColision();
+            checkColision();
 
             repaint();
 
@@ -189,8 +190,8 @@ public class MyFrame extends JFrame {
 
         player.update(); // Update player logic
 
-       // enemy.update();
-        gameOver = checkColision();
+        // enemy.update();
+        //gameOver = checkColision();
 
 
         // Update enemy logic

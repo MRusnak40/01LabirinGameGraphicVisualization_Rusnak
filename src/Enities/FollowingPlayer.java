@@ -19,8 +19,7 @@ GameLoop gameLoop;
     public void run() {
         while(gameLoop.running) {
             frame.updateEnemies();
-            frame.checkColision();
-            System.out.println(Thread.currentThread().getName());
+           // System.out.println(Thread.currentThread().getName());
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

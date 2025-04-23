@@ -9,8 +9,7 @@ import java.awt.event.KeyEvent;
 public class Enemy extends Rectangle {
 
     private int speed;
-    private int x;
-    private int y;
+
     private boolean isMoving;
     private String name;
     ImageIcon imageIcon;
@@ -19,10 +18,7 @@ public class Enemy extends Rectangle {
     MyFrame frame;
 
     public Enemy(int x, int y, int width, int height, Color color, Player player, MyFrame frame) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
         this.color = color;
         this.player = player;
         this.frame = frame;
@@ -30,14 +26,23 @@ public class Enemy extends Rectangle {
 
 
     public void movement() {
-        if (!player.listOfTracks.isEmpty()) {
+        if (player.steps > 5) {
+            if (!player.listOfTracks.isEmpty()) {
 
-            x = player.listOfTracks.getFirst().getX();
-            y = player.listOfTracks.getFirst().getY();
+                this.x = player.listOfTracks.getFirst().getX();
+                this.y = player.listOfTracks.getFirst().getY();
 
-            player.listOfTracks.removeFirst();
+                player.listOfTracks.removeFirst();
+            } else {
+                // Poslední krok — ujisti se, že enemy dojde na aktuální pozici hráče
+                if (this.x != player.x || this.y != player.y) {
+                    this.x = player.x;
+                    this.y = player.y;
+                }
+
+            }
         }
-        System.out.println(player.x + " " + player.y);
+        //System.out.println(player.x + " " + player.y);
 
     }
 
@@ -50,7 +55,8 @@ public class Enemy extends Rectangle {
 
          */
         movement();
-
+        frame.checkColision();
+        frame.repaint();
     }
 
 

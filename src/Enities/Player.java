@@ -14,15 +14,16 @@ public class Player extends Rectangle {
     Color color;
     public boolean isAlive;
     public String name;
-    public int score;
+    public int steps;
     public int currentx;
     public int currenty;
     public ImageIcon imageIcon;
     public final int speed = 15;
     public boolean isOnEndPlayer = false;
     public ArrayList<Track> listOfTracks;
-MyFrame frame;
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall,MyFrame frame) {
+    MyFrame frame;
+
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -46,7 +47,7 @@ MyFrame frame;
 
         //creating list where enemy will follow
         listOfTracks.add(new Track(nextX, nextY));
-
+        steps++;
 
         // Ovládání (zjisti novou pozici před pohybem)
         switch (e.getKeyCode()) {
@@ -65,7 +66,7 @@ MyFrame frame;
 
         }
 
-        // Přepočet souřadnic na pozici v mřížce
+        // recounting position to cells map
         int col = nextX / cellSize;
         int row = nextY / cellSize;
 
@@ -81,19 +82,43 @@ MyFrame frame;
             } else if (maze[row][col] == 2) {
 
                 isOnEndPlayer = true;
+              //  System.exit(0);
 
             } else if (maze[row][col] == 3) {
 
+                wall.maze[row][col] = 0;
+                x = nextX;
+                y = nextY;
+
+                currentx = x;
+                currenty = y;
 
             } else if (maze[row][col] == 4) {
 
                 wall.maze[row][col] = 0;
 
+                x = nextX;
+                y = nextY;
+
+                currentx = x;
+                currenty = y;
 
             } else if (maze[row][col] == 5) {
+                wall.maze[row][col] = 0;
+                x = nextX;
+                y = nextY;
 
+                currentx = x;
+                currenty = y;
             } else if (maze[row][col] == 6) {
 
+
+                wall.maze[row][col] = 0;
+                x = nextX;
+                y = nextY;
+
+                currentx = x;
+                currenty = y;
             }
 
         }

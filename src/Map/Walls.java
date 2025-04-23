@@ -20,7 +20,7 @@ public class Walls extends JPanel {
     private BufferedImage doorTextureMath;
     private BufferedImage doorTextureQestions;
     // Labyrint (1 = wall, 0 = road)
-    public  int[][] maze = {
+    public int[][] maze = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1},
             {1, 1, 2, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
@@ -49,7 +49,6 @@ public class Walls extends JPanel {
     };
 
 
-
     // constructor
     public Walls() {
         try {
@@ -75,8 +74,6 @@ public class Walls extends JPanel {
     }
 
 
-
-
     // method for paint
     @Override
     protected void paintComponent(Graphics g) {
@@ -85,8 +82,6 @@ public class Walls extends JPanel {
 //paints the walss
         for (int row = 0; row < maze.length; row++) {
             for (int col = 0; col < maze[row].length; col++) {
-
-
 
 
                 if (maze[row][col] == 1) {
@@ -131,7 +126,6 @@ public class Walls extends JPanel {
             }
         }
     }
-
 
 
     public int[][] getMaze() {

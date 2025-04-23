@@ -33,7 +33,8 @@ public class GameLoop implements Runnable {
 
         while (running) {
 
-            frame.update(); // Update game state
+            frame.update();
+            // Update game state
             frame.repaint(); // Render the game
 
             // Sleep for a short duration to control the loop speed
@@ -44,7 +45,7 @@ public class GameLoop implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getName());
+           // System.out.println(Thread.currentThread().getName());
         }
     }
 
