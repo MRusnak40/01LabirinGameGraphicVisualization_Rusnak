@@ -18,7 +18,7 @@ public class StartWindow extends JFrame {
 
         this.setTitle("Start");
 
-        this.setSize(1000, 1000);
+        this.setSize(1000, 1050);
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         this.setResizable(false);
@@ -76,7 +76,7 @@ public class StartWindow extends JFrame {
         setJMenuBar(menuBar);
 
 
-        JLabel imageLabel = new JLabel(LoadTextures.loadImage("Files/testBackGround.png"));
+        JLabel imageLabel = new JLabel(LoadTextures.loadImage("Files/backgroundPicture.png"));
         imageLabel.setBounds(0, 0, 1000, 1000);
         add(imageLabel);
 
