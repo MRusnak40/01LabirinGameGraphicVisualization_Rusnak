@@ -76,7 +76,7 @@ public class StartWindow extends JFrame {
         setJMenuBar(menuBar);
 
 
-        JLabel imageLabel = new JLabel(LoadTextures.loadImage("Files/SmallerWindowPicture.png"));
+        JLabel imageLabel = new JLabel(LoadTextures.loadImage("Files/testBackGround.png"));
         imageLabel.setBounds(0, 0, 1000, 1000);
         add(imageLabel);
 
