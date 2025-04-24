@@ -20,11 +20,14 @@ GameLoop gameLoop;
         while(gameLoop.running) {
             frame.updateEnemies();
            // System.out.println(Thread.currentThread().getName());
+
+
             try {
                 Thread.sleep(70);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+        System.out.println("Enemy stoped moving");
     }
 }

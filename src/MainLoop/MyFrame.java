@@ -28,16 +28,16 @@ public class MyFrame extends JFrame {
     Walls walls = new Walls();
     Player player;
     Enemy enemy;
-    public boolean gameOver;
+    public boolean gameOver=false;
     Image images;
     BufferedImage bufferedImage;
     Graphics2D g2;
 
     public MyFrame() throws HeadlessException {
 
-        gameOver = false;
+        this.gameOver=gameOver;
         widthWindow = 1520;
-        heightWindow = 1000;
+        heightWindow = 1020;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
@@ -46,23 +46,30 @@ public class MyFrame extends JFrame {
 
         this.setBackground(Color.BLACK);
 
-        this.setLayout(null);
+        //this.setLayout(null);
+
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 //set player size
 
 
-        walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
+        //walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
 
         this.setLayout(new BorderLayout());
+//
+
         walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
-        this.add(walls, BorderLayout.CENTER);
+
 
         this.addKeyListener(new Al());
         this.getContentPane().setBackground(Color.BLUE);
 
         ImageIcon imageIcon = new ImageIcon("Files/betterQualityFrameIcon.png");
         setIconImage(imageIcon.getImage());
+
+
+        this.add(walls, BorderLayout.CENTER);
+
         this.setVisible(true);
 
 
@@ -70,43 +77,6 @@ public class MyFrame extends JFrame {
 
 
 
-
-
-    /*
-    public void update(Graphics g) {
-        paint(g); // zabraňuje blikání tím, že nečistí pozadí
-    }
-
-
-
-    public void paint(Graphics g) {
-        bufferedImage = new BufferedImage(widthWindow, heightWindow, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = bufferedImage.createGraphics();
-
-        image = createImage(this.getWidth(), this.getHeight());
-        graphics = image.getGraphics();
-
-
-        //g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
-
-        g2.drawImage(bufferedImage, 0, 0, this); // zobrazíme vykreslený obraz
-
-
-        player.draw(g);
-        enemy.draw(g);
-
-
-        if (gameOver == true) {
-            g.setColor(Color.red);
-            g.setFont(new Font("Arial", Font.BOLD, 100));
-            g.drawString("Game Over", 100, 200);
-        }
-        g.dispose();
-
-    }
-
-
-     */
 
 
     @Override
@@ -149,13 +119,13 @@ public class MyFrame extends JFrame {
 
     public void checkColision() {
         if (player.intersects(enemy)) {
-            gameOver=true;
+            gameOver = true;
             System.out.println("Colision");
         } else if (enemy.intersects(player)) {
             System.out.println("Colision");
-            gameOver=true;
-        }else {
-            gameOver=false;
+            gameOver = true;
+        } else {
+            gameOver = false;
         }
 
 
@@ -201,7 +171,6 @@ public class MyFrame extends JFrame {
 
         //System.out.println(player.listOfTracks.size());
     }
-
 
 
 }

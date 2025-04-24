@@ -32,10 +32,19 @@ public class GameLoop implements Runnable {
     public void run() {
 
         while (running) {
-
+// Update game state
             frame.update();
-            // Update game state
-            frame.repaint(); // Render the game
+
+
+
+
+            // Render the game
+            frame.repaint();
+
+            //if player touched enemy
+            if(frame.gameOver){
+                running = false;
+            }
 
             // Sleep for a short duration to control the loop speed
             try {
@@ -55,7 +64,10 @@ public class GameLoop implements Runnable {
 
 
 
+public void RestartGame() {
 
+
+}
 
 
 
