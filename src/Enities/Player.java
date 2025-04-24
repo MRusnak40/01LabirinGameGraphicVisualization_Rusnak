@@ -13,7 +13,7 @@ public class Player extends Rectangle {
     Walls wall;
     Color color;
     public boolean isAlive;
-    public String name=" ";
+    private String name = " ";
     public int steps;
     public int currentx;
     public int currenty;
@@ -22,9 +22,10 @@ public class Player extends Rectangle {
     public boolean isOnEndPlayer = false;
     public ArrayList<Track> listOfTracks;
     MyFrame frame;
-    NameTag nameTag = new NameTag(name, this.x, this.y);
+    //NameTag nameTag = new NameTag(name, this.x, this.y);
+    NameTag nameTag;
 
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame) {
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame,String name) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -34,6 +35,8 @@ public class Player extends Rectangle {
         this.wall = wall;
         this.listOfTracks = new ArrayList<>();
         this.frame = frame;
+        this.name = name;
+        this.nameTag = new NameTag(this.name, this.x, this.y);
     }
 
 
@@ -141,5 +144,11 @@ public class Player extends Rectangle {
         nameTag.setPosition(this.x, this.y);
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

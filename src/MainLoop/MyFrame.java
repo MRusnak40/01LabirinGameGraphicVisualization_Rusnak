@@ -146,7 +146,8 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this);
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this,"Jiri");
+
         enemy = new Enemy(1450, 930, 20, 20, Color.RED, this.player, this);
 
 
@@ -172,5 +173,9 @@ public class MyFrame extends JFrame {
         //System.out.println(player.listOfTracks.size());
     }
 
+    public String setName(){
+
+        return " ";
+    }
 
 }
