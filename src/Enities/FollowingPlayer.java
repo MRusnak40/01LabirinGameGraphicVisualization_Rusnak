@@ -21,7 +21,7 @@ GameLoop gameLoop;
             frame.updateEnemies();
            // System.out.println(Thread.currentThread().getName());
             try {
-                Thread.sleep(100);
+                Thread.sleep(70);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
