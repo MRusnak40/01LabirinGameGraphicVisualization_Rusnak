@@ -13,7 +13,7 @@ public class Player extends Rectangle {
     Walls wall;
     Color color;
     public boolean isAlive;
-    public String name;
+    public String name=" ";
     public int steps;
     public int currentx;
     public int currenty;
@@ -22,6 +22,7 @@ public class Player extends Rectangle {
     public boolean isOnEndPlayer = false;
     public ArrayList<Track> listOfTracks;
     MyFrame frame;
+    NameTag nameTag = new NameTag(name, this.x, this.y);
 
     public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame) {
         this.x = x;
@@ -82,7 +83,7 @@ public class Player extends Rectangle {
             } else if (maze[row][col] == 2) {
 
                 isOnEndPlayer = true;
-              //  System.exit(0);
+                //  System.exit(0);
 
             } else if (maze[row][col] == 3) {
 
@@ -132,12 +133,12 @@ public class Player extends Rectangle {
         // g.setColor(this.color);
         // g.fillRect(this.x, this.y, this.width, this.height);
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
-
+        nameTag.draw(g);
     }
 
     public void update() {
         // Update enemy position or logic
-
+        nameTag.setPosition(this.x, this.y);
     }
 
 

@@ -19,8 +19,9 @@ public class NameTag {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.WHITE); // Barva jmenovky
-        g.drawString(name, x, y - 10); // Vykreslení jmenovky nad objektem
+        g.setColor(new Color(0, 0, 0));// color name tag
+        g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        g.drawString(name, x, y - 10); // draw name up on object
     }
 
 }
