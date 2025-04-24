@@ -6,6 +6,7 @@ import Map.Doors;
 import Map.Walls;
 import PreImplements.Box;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -13,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
+import java.io.File;
 
 public class MyFrame extends JFrame {
     private GameLoop gameLoop;
@@ -199,5 +201,7 @@ public class MyFrame extends JFrame {
 
         //System.out.println(player.listOfTracks.size());
     }
+
+
 
 }

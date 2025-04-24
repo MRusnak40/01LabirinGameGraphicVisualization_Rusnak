@@ -1,27 +1,36 @@
 package SubWindows;
 
+import LoadingFromFiles.LoadTextures;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 public class StartWindow extends JFrame {
     public boolean isPressedStart = false;
     HelpWindow helpWindow;
     private int choose;
+    private Image image;
 
     public StartWindow() {
 
         this.setTitle("Start");
 
-        this.setSize(1000, 1000);
+        this.setSize(900, 900);
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        ImageIcon imageIcon=new ImageIcon("Files/betterQualityFrameIcon.png");
+        ImageIcon imageIcon = new ImageIcon("Files/betterQualityFrameIcon.png");
         setIconImage(imageIcon.getImage());
+
+        getContentPane().setBackground(Color.BLACK);
+
         Components();
+
+
         setVisible(true);
     }
 
@@ -65,6 +74,14 @@ public class StartWindow extends JFrame {
 
 
         setJMenuBar(menuBar);
+
+/*
+        JLabel imageLabel = new JLabel(LoadTextures.loadImage("Files/SmallerWindowPicture.png"));
+        imageLabel.setBounds(0, 0, 900, 900);
+        add(imageLabel);
+
+ */
+
     }
 
 }
