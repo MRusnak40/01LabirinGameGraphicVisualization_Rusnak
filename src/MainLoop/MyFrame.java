@@ -28,14 +28,15 @@ public class MyFrame extends JFrame {
     Walls walls = new Walls();
     Player player;
     Enemy enemy;
-    public boolean gameOver=false;
+    public boolean gameOver = false;
+    private String name;
     Image images;
     BufferedImage bufferedImage;
     Graphics2D g2;
 
-    public MyFrame() throws HeadlessException {
-
-        this.gameOver=gameOver;
+    public MyFrame(String name) throws HeadlessException {
+        setName(name);
+        this.gameOver = gameOver;
         widthWindow = 1520;
         heightWindow = 1020;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,9 +75,6 @@ public class MyFrame extends JFrame {
 
 
     }
-
-
-
 
 
     @Override
@@ -146,7 +144,7 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this,"Jiri");
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this, name);
 
         enemy = new Enemy(1450, 930, 20, 20, Color.RED, this.player, this);
 
@@ -173,9 +171,19 @@ public class MyFrame extends JFrame {
         //System.out.println(player.listOfTracks.size());
     }
 
-    public String setName(){
+    public void setName(String nameos) {
+        if (nameos != null) {
 
-        return " ";
+            this.name = nameos;
+        } else {
+            this.name = " ";
+        }
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
 
 }

@@ -21,7 +21,7 @@ public class NameTag {
     public void draw(Graphics g) {
         g.setColor(new Color(0, 0, 0));// color name tag
         g.setFont(new Font("TimesRoman", Font.BOLD, 20));
-        g.drawString(name, x, y - 10); // draw name up on object
+        g.drawString(name, x-10, y - 10); // draw name up on object
     }
 
 }

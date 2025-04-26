@@ -16,6 +16,7 @@ public class StartWindow extends JFrame {
     HelpWindow helpWindow;
     private int choose;
     private Image image;
+    private String name;
 
     public StartWindow() {
 
@@ -57,7 +58,7 @@ public class StartWindow extends JFrame {
             }
         });
 
-
+//menu on top window
         JMenuItem howItWorks = new JMenuItem("How it works");
         howItWorks.addActionListener(new ActionListener() {
             @Override
@@ -68,7 +69,7 @@ public class StartWindow extends JFrame {
             }
         });
 
-
+//adding
         helpMenu.add(howToWin);
         helpMenu.add(howItWorks);
 
@@ -94,10 +95,12 @@ public class StartWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isPressedStart = true;
-                 StartWindow.this.dispose();
+
+                name = JOptionPane.showInputDialog("Set name to your character");
+                StartWindow.this.dispose();
 
 
-              //  StartWindow.this.setVisible(false);
+                //  StartWindow.this.setVisible(false);
 /*
                 MyFrame frame = new MyFrame();
                 GameLoop loop = new GameLoop(frame);
@@ -126,7 +129,7 @@ public class StartWindow extends JFrame {
 
                 // creat GUI window (MyFrame) must be on EDT=Event Dispatch Thread
                 SwingUtilities.invokeLater(() -> {
-                    MyFrame frame = new MyFrame(); // GUI window
+                    MyFrame frame = new MyFrame(name); // GUI window
 
                     // Vlákna se spustí v samostatném vlákně, ale až po vytvoření GUI
                     new Thread(() -> {
@@ -135,6 +138,7 @@ public class StartWindow extends JFrame {
                         FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop);
                         Thread thread1 = new Thread(loop);
                         Thread thread2 = new Thread(followingPlayer);
+
 
                         thread1.start();
                         thread2.start();
@@ -151,10 +155,7 @@ public class StartWindow extends JFrame {
                 });
 
 
-
-
 //	↑		↑	↑	↑	↑	↑	↑	↑	↑
-
 
 
             }
@@ -175,11 +176,23 @@ public class StartWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
             }
         });
+
+
         add(modeButton);
 
 
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 }

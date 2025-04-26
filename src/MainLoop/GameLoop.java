@@ -7,12 +7,6 @@ public class GameLoop implements Runnable {
 
 
 
-
-
-
-
-
-
     public GameLoop(MyFrame frame) {
         this.frame = frame;
         this.running = true;
@@ -21,17 +15,12 @@ public class GameLoop implements Runnable {
 
 
 
-
-
-
-
-
-//BY CHATGPT
-
     @Override
     public void run() {
 
         while (running) {
+
+
 // Update game state
             frame.update();
 
@@ -58,9 +47,6 @@ public class GameLoop implements Runnable {
         }
     }
 
-//  ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑
-
-
 
 
 
@@ -68,16 +54,6 @@ public void RestartGame() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

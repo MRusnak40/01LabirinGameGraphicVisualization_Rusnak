@@ -1,6 +1,4 @@
-import Enities.FollowingPlayer;
-import MainLoop.GameLoop;
-import MainLoop.MyFrame;
+import LoadingFromFiles.LoadText;
 import SubWindows.StartWindow;
 
 import javax.swing.*;
@@ -9,7 +7,7 @@ import javax.swing.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
+        LoadText loadText = new LoadText();
 
 
         // Spuštění GUI musí být v Event Dispatch Thread (Swing best practice)
