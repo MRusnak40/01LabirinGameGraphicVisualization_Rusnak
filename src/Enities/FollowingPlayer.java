@@ -6,7 +6,7 @@ import MainLoop.MyFrame;
 public class FollowingPlayer implements Runnable {
 
     private int currentx;
-    private int currenty;
+    private int setsDifficulty=100;
     MyFrame frame;
 GameLoop gameLoop;
 
@@ -23,11 +23,23 @@ GameLoop gameLoop;
 
 
             try {
-                Thread.sleep(70);
+                Thread.sleep(setsDifficulty);
+                //mills is playble 70
+                //62 hard
+                //80 easy
+
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
         System.out.println("Enemy stoped moving");
+    }
+
+    public int getSetsDifficulty() {
+        return setsDifficulty;
+    }
+
+    public void setSetsDifficulty(int setsDifficulty) {
+        this.setsDifficulty = setsDifficulty;
     }
 }

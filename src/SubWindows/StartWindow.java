@@ -14,9 +14,10 @@ import java.awt.image.BufferedImage;
 public class StartWindow extends JFrame {
     public boolean isPressedStart = false;
     HelpWindow helpWindow;
-    private int choose;
+    private int chooseOfMode	;
     private Image image;
     private String name;
+    public boolean isPressedMode = false;
 
     public StartWindow() {
 
@@ -94,13 +95,15 @@ public class StartWindow extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isPressedStart = true;
 
-                name = JOptionPane.showInputDialog("Set name to your character");
-                StartWindow.this.dispose();
+                if (isPressedMode) {
+                    isPressedStart = true;
+
+                    name = JOptionPane.showInputDialog("Set name to your character");
+                    StartWindow.this.dispose();
 
 
-                //  StartWindow.this.setVisible(false);
+                    //  StartWindow.this.setVisible(false);
 /*
                 MyFrame frame = new MyFrame();
                 GameLoop loop = new GameLoop(frame);
@@ -124,43 +127,47 @@ public class StartWindow extends JFrame {
  */
 
 
-                //By chat gpt
+                    //By chat gpt
 
 
-                // creat GUI window (MyFrame) must be on EDT=Event Dispatch Thread
-                SwingUtilities.invokeLater(() -> {
-                    MyFrame frame = new MyFrame(name); // GUI window
+                    // creat GUI window (MyFrame) must be on EDT=Event Dispatch Thread
+                    SwingUtilities.invokeLater(() -> {
+                        MyFrame frame = new MyFrame(name); // GUI window
 
-                    // Vlákna se spustí v samostatném vlákně, ale až po vytvoření GUI
-                    new Thread(() -> {
+                        // Vlákna se spustí v samostatném vlákně, ale až po vytvoření GUI
+                        new Thread(() -> {
 
-                        GameLoop loop = new GameLoop(frame);
-                        FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop);
-                        Thread thread1 = new Thread(loop);
-                        Thread thread2 = new Thread(followingPlayer);
-
-
-                        thread1.start();
-                        thread2.start();
-
-                        try {
-                            thread1.join();
-                            thread2.join();
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                        }
+                            GameLoop loop = new GameLoop(frame);
+                            FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop);
+                            Thread thread1 = new Thread(loop);
+                            Thread thread2 = new Thread(followingPlayer);
 
 
-                    }).start();
-                });
+                            thread1.start();
+                            thread2.start();
+
+                            try {
+                                thread1.join();
+                                thread2.join();
+                            } catch (InterruptedException ex) {
+                                ex.printStackTrace();
+                            }
+
+
+                        }).start();
+                    });
 
 
 //	↑		↑	↑	↑	↑	↑	↑	↑	↑
 
 
+                }
+
             }
         });
+
         add(startButton);
+
 
 
 //mode button
@@ -173,9 +180,16 @@ public class StartWindow extends JFrame {
         modeButton.setOpaque(false);
 
         modeButton.addActionListener(new ActionListener() {
+
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                ModeWindow modeWindow = new ModeWindow(StartWindow.this);
+
+
+
+                isPressedMode = true;
 
             }
         });
@@ -194,5 +208,13 @@ public class StartWindow extends JFrame {
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getChooseOfMode() {
+        return chooseOfMode;
+    }
+
+    public void setChooseOfMode(int chooseOfMode) {
+        this.chooseOfMode = chooseOfMode;
     }
 }
