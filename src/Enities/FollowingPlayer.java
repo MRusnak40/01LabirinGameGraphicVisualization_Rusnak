@@ -10,9 +10,10 @@ public class FollowingPlayer implements Runnable {
     MyFrame frame;
 GameLoop gameLoop;
 
-    public FollowingPlayer(MyFrame frame,GameLoop gameLoop) {
+    public FollowingPlayer(MyFrame frame,GameLoop gameLoop,int setsDifficulty) {
         this.frame = frame;
         this.gameLoop= gameLoop;
+        this.setsDifficulty=setsDifficulty;
     }
 
     @Override

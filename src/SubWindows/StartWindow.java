@@ -14,10 +14,11 @@ import java.awt.image.BufferedImage;
 public class StartWindow extends JFrame {
     public boolean isPressedStart = false;
     HelpWindow helpWindow;
-    private int chooseOfMode	;
+    private int chooseOfMode;
     private Image image;
     private String name;
     public boolean isPressedMode = false;
+    private int modes = 0;
 
     public StartWindow() {
 
@@ -96,7 +97,7 @@ public class StartWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (isPressedMode) {
+                if (isPressedMode && modes != 0) {
                     isPressedStart = true;
 
                     name = JOptionPane.showInputDialog("Set name to your character");
@@ -138,7 +139,11 @@ public class StartWindow extends JFrame {
                         new Thread(() -> {
 
                             GameLoop loop = new GameLoop(frame);
-                            FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop);
+
+
+                            System.out.println(modes);
+
+                            FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop, modes);
                             Thread thread1 = new Thread(loop);
                             Thread thread2 = new Thread(followingPlayer);
 
@@ -169,7 +174,6 @@ public class StartWindow extends JFrame {
         add(startButton);
 
 
-
 //mode button
 
         JButton modeButton = new JButton();
@@ -186,7 +190,6 @@ public class StartWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 ModeWindow modeWindow = new ModeWindow(StartWindow.this);
-
 
 
                 isPressedMode = true;
@@ -216,5 +219,13 @@ public class StartWindow extends JFrame {
 
     public void setChooseOfMode(int chooseOfMode) {
         this.chooseOfMode = chooseOfMode;
+    }
+
+    public int getModes() {
+        return modes;
+    }
+
+    public void setModes(int modes) {
+        this.modes = modes;
     }
 }

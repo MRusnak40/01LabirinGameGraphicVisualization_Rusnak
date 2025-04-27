@@ -4,7 +4,7 @@ import Enities.Enemy;
 import Enities.Player;
 import Map.Doors;
 import Map.Walls;
-import PreImplements.Box;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

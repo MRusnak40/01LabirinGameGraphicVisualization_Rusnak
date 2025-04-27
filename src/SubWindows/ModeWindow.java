@@ -39,15 +39,16 @@ public class ModeWindow extends JDialog {
         hard.setBounds(30, 20, 100, 100);
         ImageIcon hardIcon = new ImageIcon("Files/HardButton.png");
         hard.setIcon(hardIcon);
-        hard.setContentAreaFilled(false);
-        hard.setBorderPainted(false);
-        hard.setOpaque(false);
+        // hard.setContentAreaFilled(false);
+        // hard.setBorderPainted(false);
+        // hard.setOpaque(false);
 
         hard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                startWindow.setModes(61);
+                JOptionPane.showMessageDialog(null, "Hard Mode (Good luck)");
+               dispose();
             }
         });
 
@@ -57,15 +58,16 @@ public class ModeWindow extends JDialog {
         easy.setBounds(160, 20, 100, 100);
         ImageIcon easyIcon = new ImageIcon("Files/EasyButton.png");
         easy.setIcon(easyIcon);
-        easy.setContentAreaFilled(false);
-        easy.setBorderPainted(false);
-        easy.setOpaque(false);
+        // easy.setContentAreaFilled(false);
+//easy.setBorderPainted(false);
+        // easy.setOpaque(false);
 
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                startWindow.setModes(80);
+                JOptionPane.showMessageDialog(null,"Easy Mode (You are scared dont you)");
+                dispose();
             }
         });
 
