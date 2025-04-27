@@ -46,7 +46,7 @@ public class ModeWindow extends JDialog {
         hard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                startWindow.setModes(61);
+                startWindow.setModes(62);
                 JOptionPane.showMessageDialog(null, "Hard Mode (Good luck)");
                dispose();
             }
@@ -66,7 +66,7 @@ public class ModeWindow extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startWindow.setModes(80);
-                JOptionPane.showMessageDialog(null,"Easy Mode (You are scared dont you)");
+                JOptionPane.showMessageDialog(null,"Easy Mode (You are scared. Dont you?)");
                 dispose();
             }
         });

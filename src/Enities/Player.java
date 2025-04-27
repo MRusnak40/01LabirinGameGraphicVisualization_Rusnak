@@ -25,7 +25,7 @@ public class Player extends Rectangle {
     //NameTag nameTag = new NameTag(name, this.x, this.y);
     NameTag nameTag;
 
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame,String name) {
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame, String name) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -77,6 +77,8 @@ public class Player extends Rectangle {
         // save from IndexOutOfBounds
         if (row >= 0 && row < maze.length && col >= 0 && col < maze[0].length) {
             if (maze[row][col] == 0) { // 0 = cesta
+
+
                 x = nextX;
                 y = nextY;
 
@@ -88,7 +90,7 @@ public class Player extends Rectangle {
                 isOnEndPlayer = true;
                 //  System.exit(0);
 
-            } else if (maze[row][col] == 3) {
+            } else if (maze[row][col] == 3) { // fakedoors
 
                 wall.maze[row][col] = 0;
                 x = nextX;
@@ -97,7 +99,7 @@ public class Player extends Rectangle {
                 currentx = x;
                 currenty = y;
 
-            } else if (maze[row][col] == 4) {
+            } else if (maze[row][col] == 4) {//math doors
 
                 wall.maze[row][col] = 0;
 
@@ -107,22 +109,24 @@ public class Player extends Rectangle {
                 currentx = x;
                 currenty = y;
 
-            } else if (maze[row][col] == 5) {
+            } else if (maze[row][col] == 5) {//texture minigame doors
                 wall.maze[row][col] = 0;
                 x = nextX;
                 y = nextY;
 
                 currentx = x;
                 currenty = y;
-            } else if (maze[row][col] == 6) {
+            } else if (maze[row][col] == 6) {//doors with qestions
 
 
-                wall.maze[row][col] = 0;
+
+
                 x = nextX;
                 y = nextY;
 
                 currentx = x;
                 currenty = y;
+                wall.maze[row][col] = 0;
             }
 
         }
