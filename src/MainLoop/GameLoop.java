@@ -1,18 +1,17 @@
 package MainLoop;
 
+import javax.swing.*;
+
 public class GameLoop implements Runnable {
 
     private MyFrame frame;
     public boolean running;
 
 
-
     public GameLoop(MyFrame frame) {
         this.frame = frame;
         this.running = true;
     }
-
-
 
 
     @Override
@@ -25,14 +24,14 @@ public class GameLoop implements Runnable {
             frame.update();
 
 
-
-
             // Render the game
             frame.repaint();
 
             //if player touched enemy
-            if(frame.gameOver){
-                running = false;
+            if (frame.gameOver) {
+
+                restartGame();
+
             }
 
             // Sleep for a short duration to control the loop speed
@@ -43,21 +42,24 @@ public class GameLoop implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-           // System.out.println(Thread.currentThread().getName());
+            // System.out.println(Thread.currentThread().getName());
         }
     }
 
 
+    public void restartGame() {
+
+        int result = JOptionPane.showConfirmDialog(frame, "Wanna play again?", "Revive",
+                JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            frame.gameOver = false;
 
 
-public void RestartGame() {
-
-
-}
-
-
-
-    public void stop() {
-        running = false;
+        }
     }
-}
+
+        public void stop () {
+            running = false;
+        }
+    }

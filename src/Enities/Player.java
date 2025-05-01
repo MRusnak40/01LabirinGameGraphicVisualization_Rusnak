@@ -1,6 +1,9 @@
 package Enities;
 
 import MainLoop.MyFrame;
+import Map.DoorsWithMath;
+import Map.DoorsWithMiniGame;
+import Map.DoorsWithQestions;
 import Map.Walls;
 
 import javax.swing.*;
@@ -24,8 +27,12 @@ public class Player extends Rectangle {
     MyFrame frame;
     //NameTag nameTag = new NameTag(name, this.x, this.y);
     NameTag nameTag;
+    DoorsWithQestions doorsWithQestions = new DoorsWithQestions(false);
+    DoorsWithMiniGame doorsWithMiniGame = new DoorsWithMiniGame(false);
+    DoorsWithMath doorsWithMath = new DoorsWithMath(false);
+    Walls walls;
 
-    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame, String name) {
+    public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame, String name, Walls walls) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -37,98 +44,108 @@ public class Player extends Rectangle {
         this.frame = frame;
         this.name = name;
         this.nameTag = new NameTag(this.name, this.x, this.y);
+        this.walls = walls;
     }
 
 
     public void keyPressed(KeyEvent e) {
-        Walls walls = new Walls();
+
         int[][] maze = walls.getMaze();
         int cellSize = 40;
 
         int nextX = x;
         int nextY = y;
 
+        if (!frame.gameOver) {
+            //creating list where enemy will follow
+            listOfTracks.add(new Track(nextX, nextY));
+            steps++;
 
-        //creating list where enemy will follow
-        listOfTracks.add(new Track(nextX, nextY));
-        steps++;
+            // Ovládání (zjisti novou pozici před pohybem)
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    nextX -= speed;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    nextX += speed;
+                    break;
+                case KeyEvent.VK_UP:
+                    nextY -= speed;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    nextY += speed;
+                    break;
 
-        // Ovládání (zjisti novou pozici před pohybem)
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                nextX -= speed;
-                break;
-            case KeyEvent.VK_RIGHT:
-                nextX += speed;
-                break;
-            case KeyEvent.VK_UP:
-                nextY -= speed;
-                break;
-            case KeyEvent.VK_DOWN:
-                nextY += speed;
-                break;
-
-        }
-
-        // recounting position to cells map
-        int col = nextX / cellSize;
-        int row = nextY / cellSize;
-
-        // save from IndexOutOfBounds
-        if (row >= 0 && row < maze.length && col >= 0 && col < maze[0].length) {
-            if (maze[row][col] == 0) { // 0 = cesta
-
-
-                x = nextX;
-                y = nextY;
-
-                currentx = x;
-                currenty = y;
-
-            } else if (maze[row][col] == 2) {
-
-                isOnEndPlayer = true;
-                //  System.exit(0);
-
-            } else if (maze[row][col] == 3) { // fakedoors
-
-                wall.maze[row][col] = 0;
-                x = nextX;
-                y = nextY;
-
-                currentx = x;
-                currenty = y;
-
-            } else if (maze[row][col] == 4) {//math doors
-
-                wall.maze[row][col] = 0;
-
-                x = nextX;
-                y = nextY;
-
-                currentx = x;
-                currenty = y;
-
-            } else if (maze[row][col] == 5) {//texture minigame doors
-                wall.maze[row][col] = 0;
-                x = nextX;
-                y = nextY;
-
-                currentx = x;
-                currenty = y;
-            } else if (maze[row][col] == 6) {//doors with qestions
-
-
-
-
-                x = nextX;
-                y = nextY;
-
-                currentx = x;
-                currenty = y;
-                wall.maze[row][col] = 0;
             }
 
+            // recounting position to cells map
+            int col = nextX / cellSize;
+            int row = nextY / cellSize;
+
+            // save from IndexOutOfBounds
+            if (row >= 0 && row < maze.length && col >= 0 && col < maze[0].length) {
+                if (maze[row][col] == 0) { // 0 = cesta
+
+
+                    x = nextX;
+                    y = nextY;
+
+                    currentx = x;
+                    currenty = y;
+
+                } else if (maze[row][col] == 2) {
+
+                    isOnEndPlayer = true;
+                    //  System.exit(0);
+
+                } else if (maze[row][col] == 3) { // fakedoors
+
+                    wall.maze[row][col] = 0;
+                    x = nextX;
+                    y = nextY;
+
+                    currentx = x;
+                    currenty = y;
+
+                } else if (maze[row][col] == 4) {//math doors
+
+                    wall.maze[row][col] = 0;
+
+                    x = nextX;
+                    y = nextY;
+
+                    currentx = x;
+                    currenty = y;
+
+                } else if (maze[row][col] == 5) {//texture minigame doors
+                    wall.maze[row][col] = 0;
+                    x = nextX;
+                    y = nextY;
+
+                    currentx = x;
+                    currenty = y;
+                } else if (maze[row][col] == 6) {//doors with qestions
+
+
+                    if (doorsWithQestions.answer()) {
+                        maze[row][col] = 0;
+
+
+                    } else {
+                        frame.gameOver = true;
+                    }
+
+                    x = nextX;
+                    y = nextY;
+
+
+                    currentx = x;
+                    currenty = y;
+
+
+                }
+
+            }
         }
     }
 
@@ -146,6 +163,8 @@ public class Player extends Rectangle {
     public void update() {
         // Update enemy position or logic
         nameTag.setPosition(this.x, this.y);
+
+
     }
 
     public String getName() {

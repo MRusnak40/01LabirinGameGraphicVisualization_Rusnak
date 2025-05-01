@@ -59,8 +59,8 @@ public class MyFrame extends JFrame {
         this.setLayout(new BorderLayout());
 //
 
-        walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
 
+        createWalls();
 
         this.addKeyListener(new Al());
         this.getContentPane().setBackground(Color.BLUE);
@@ -69,13 +69,16 @@ public class MyFrame extends JFrame {
         setIconImage(imageIcon.getImage());
 
 
-        this.add(walls, BorderLayout.CENTER);
-
         this.setVisible(true);
 
 
     }
 
+    //building walls
+    public void createWalls() {
+        walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
+        this.add(walls, BorderLayout.CENTER);
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -109,7 +112,7 @@ public class MyFrame extends JFrame {
         if (gameOver) {
             g2.setColor(Color.RED);
             g2.setFont(new Font("Arial", Font.BOLD, 250));
-            g2.drawString("Game Over", 100, 800);
+            g2.drawString("Game Over", 100, 400);
 
         }
     }
@@ -123,7 +126,7 @@ public class MyFrame extends JFrame {
             System.out.println("Colision");
             gameOver = true;
         } else {
-            gameOver = false;
+            //  gameOver = false;
         }
 
 
@@ -144,7 +147,8 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this, name);
+
+        player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this, name, walls);
 
         enemy = new Enemy(1450, 930, 20, 20, Color.RED, this.player, this);
 
@@ -169,6 +173,16 @@ public class MyFrame extends JFrame {
         // Check for collisions
 
         //System.out.println(player.listOfTracks.size());
+
+        if (gameOver) {
+
+
+            createPlayers();
+
+
+        }
+
+
     }
 
     public void setName(String nameos) {

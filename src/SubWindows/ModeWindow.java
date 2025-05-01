@@ -65,7 +65,7 @@ public class ModeWindow extends JDialog {
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                startWindow.setModes(80);
+                startWindow.setModes(8000);
                 JOptionPane.showMessageDialog(null,"Easy Mode (You are scared. Dont you?)");
                 dispose();
             }
