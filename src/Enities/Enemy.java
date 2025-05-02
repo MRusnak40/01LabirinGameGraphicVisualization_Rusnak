@@ -27,19 +27,21 @@ public class Enemy extends Rectangle {
 
     public void movement() {
         if (player.steps > 5) {
-            if (!player.listOfTracks.isEmpty()) {
+            if(!player.isSolving) {
+                if (!player.listOfTracks.isEmpty()) {
 
-                this.x = player.listOfTracks.getFirst().getX();
-                this.y = player.listOfTracks.getFirst().getY();
+                    this.x = player.listOfTracks.getFirst().getX();
+                    this.y = player.listOfTracks.getFirst().getY();
 
-                player.listOfTracks.removeFirst();
-            } else {
-                // Poslední krok — ujisti se, že enemy dojde na aktuální pozici hráče
-                if (this.x != player.x || this.y != player.y) {
-                    this.x = player.x;
-                    this.y = player.y;
+                    player.listOfTracks.removeFirst();
+                } else {
+                    // Poslední krok — ujisti se, že enemy dojde na aktuální pozici hráče
+                    if (this.x != player.x || this.y != player.y) {
+                        this.x = player.x;
+                        this.y = player.y;
+                    }
+
                 }
-
             }
         }
         //System.out.println(player.x + " " + player.y);

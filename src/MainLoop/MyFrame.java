@@ -147,7 +147,8 @@ public class MyFrame extends JFrame {
 
 
     public void createPlayers() {
-
+//x 1250 y 930
+        //y,x= 100
         player = new Player(1250, 930, 20, 20, Color.CYAN, icon, walls, this, name, walls);
 
         enemy = new Enemy(1450, 930, 20, 20, Color.RED, this.player, this);

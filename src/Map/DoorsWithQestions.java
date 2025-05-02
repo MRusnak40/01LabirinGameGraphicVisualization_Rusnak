@@ -33,7 +33,7 @@ public class DoorsWithQestions extends Doors {
 
         int qestion = rd.nextInt(qestions.size());
 
-        JOptionPane.showMessageDialog(null, qestions.get(rd.nextInt(qestion)).getQestion(), "Doors", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, qestions.get(qestion).getQestion(), "Doors", JOptionPane.INFORMATION_MESSAGE);
 
         String answer = JOptionPane.showInputDialog("Add your answer");
         if (answer != null) {
@@ -41,7 +41,7 @@ public class DoorsWithQestions extends Doors {
         } else {
             answer = " ";
         }
-        if (answer.equals(qestions.get(rd.nextInt(qestion)).getGoodAnswer())) {
+        if (answer.equals(qestions.get(qestion).getGoodAnswer())) {
             System.out.println(qestion);
             return true;
         }

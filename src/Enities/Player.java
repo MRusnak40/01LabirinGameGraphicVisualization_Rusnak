@@ -5,6 +5,7 @@ import Map.DoorsWithMath;
 import Map.DoorsWithMiniGame;
 import Map.DoorsWithQestions;
 import Map.Walls;
+import SubWindows.StartWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class Player extends Rectangle {
 
     Walls wall;
     Color color;
-    public boolean isAlive;
+    public boolean isSolving=false;
     private String name = " ";
     public int steps;
     public int currentx;
@@ -96,6 +97,18 @@ public class Player extends Rectangle {
                 } else if (maze[row][col] == 2) {
 
                     isOnEndPlayer = true;
+                    isSolving=true;
+                    int option = JOptionPane.showConfirmDialog(null, "You won. Do you want to continue?", "Victory", JOptionPane.OK_CANCEL_OPTION);
+
+                    if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
+                        System.exit(0); // Ukončí program
+                    }else {
+                        isSolving=false;
+                        frame.dispose();
+                        new StartWindow();
+                    }
+
+
                     //  System.exit(0);
 
                 } else if (maze[row][col] == 3) { // fakedoors
@@ -126,13 +139,14 @@ public class Player extends Rectangle {
                     currenty = y;
                 } else if (maze[row][col] == 6) {//doors with qestions
 
-
+                    isSolving = true;
                     if (doorsWithQestions.answer()) {
                         maze[row][col] = 0;
-
+                        isSolving = false;
 
                     } else {
                         frame.gameOver = true;
+                        isSolving = false;
                     }
 
                     x = nextX;
