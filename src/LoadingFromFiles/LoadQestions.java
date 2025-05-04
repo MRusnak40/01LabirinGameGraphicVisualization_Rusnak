@@ -20,11 +20,15 @@ public class LoadQestions {
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(",");
 
-                String qestion = split[0];
-                String answer = split[1];
+                if (split.length < 2) {
+                    System.err.println("Invalid line (skipping): " + line);
+                    continue;
+                }
+
+                String qestion = split[0].trim();
+                String answer = split[1].trim();
 
                 Qestions qestions = new Qestions(qestion, answer);
-
                 qestionsList.add(qestions);
             }
         } catch (IOException e) {

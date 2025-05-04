@@ -16,7 +16,7 @@ public class Player extends Rectangle {
 
     Walls wall;
     Color color;
-    public boolean isSolving=false;
+    public boolean isSolving = false;
     private String name = " ";
     public int steps;
     public int currentx;
@@ -97,13 +97,13 @@ public class Player extends Rectangle {
                 } else if (maze[row][col] == 2) {
 
                     isOnEndPlayer = true;
-                    isSolving=true;
+                    isSolving = true;
                     int option = JOptionPane.showConfirmDialog(null, "You won. Do you want to continue?", "Victory", JOptionPane.OK_CANCEL_OPTION);
 
                     if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
                         System.exit(0); // Ukončí program
-                    }else {
-                        isSolving=false;
+                    } else {
+                        isSolving = false;
                         frame.dispose();
                         new StartWindow();
                     }
@@ -122,7 +122,19 @@ public class Player extends Rectangle {
 
                 } else if (maze[row][col] == 4) {//math doors
 
-                    wall.maze[row][col] = 0;
+
+                    isSolving = true;
+
+                    if (doorsWithMath.showMathTask()) {
+                        wall.maze[row][col] = 0;
+                        isSolving = false;
+
+                    } else {
+                        frame.gameOver = true;
+                        isSolving = false;
+
+                    }
+
 
                     x = nextX;
                     y = nextY;
