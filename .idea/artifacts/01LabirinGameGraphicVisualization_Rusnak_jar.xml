@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="01LabirinGameGraphicVisualization_Rusnak:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/01LabirinGameGraphicVisualization_Rusnak_jar</output-path>
+    <root id="archive" name="01LabirinGameGraphicVisualization_Rusnak.jar">
+      <element id="module-output" name="01LabirinGameGraphicVisualization_Rusnak" />
+    </root>
+  </artifact>
+</component>
