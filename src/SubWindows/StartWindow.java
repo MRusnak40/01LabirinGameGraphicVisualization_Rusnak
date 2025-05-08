@@ -136,6 +136,7 @@ public class StartWindow extends JFrame {
                         MyFrame frame = new MyFrame(name); // GUI window
 
                         // Vlákna se spustí v samostatném vlákně, ale až po vytvoření GUI
+                        //it will be easier for gui because gui can freeze if i wlii do some activities in action listener
                         new Thread(() -> {
 
                             GameLoop loop = new GameLoop(frame);

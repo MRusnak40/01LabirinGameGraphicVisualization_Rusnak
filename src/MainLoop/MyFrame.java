@@ -80,6 +80,10 @@ public class MyFrame extends JFrame {
         this.add(walls, BorderLayout.CENTER);
     }
 
+
+
+    //By chat gpt
+
     @Override
     public void paint(Graphics g) {
         // Vytvoření off-screen bufferu (pouze JEDNOU, ne pokaždé v paint)
@@ -116,6 +120,12 @@ public class MyFrame extends JFrame {
 
         }
     }
+
+
+    //				 ↑			  ↑					↑
+
+
+
 
 
     public void checkColision() {
