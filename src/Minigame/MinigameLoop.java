@@ -1,4 +1,4 @@
-package SubTasks;
+package Minigame;
 
 public class MinigameLoop implements Runnable {
     private boolean running = true;

@@ -1,5 +1,5 @@
 import LoadingFromFiles.LoadText;
-import SubWindows.StartWindow;
+import Map.DoorsWithMiniGame;
 
 import javax.swing.*;
 
@@ -9,14 +9,19 @@ public class Main {
     public static void main(String[] args) {
         LoadText loadText = new LoadText();
 
-
+/*
         // turn on GUI must be in Event Dispatch Thread (Swing best practice)
         SwingUtilities.invokeLater(() -> {
             new StartWindow();
         });
     }
 
-
+ */
+DoorsWithMiniGame doorsWithMiniGame = new DoorsWithMiniGame(false);
+        SwingUtilities.invokeLater(() -> {
+            doorsWithMiniGame.miniGame();
+        });
+    }
 
 
 
