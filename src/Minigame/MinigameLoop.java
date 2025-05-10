@@ -1,9 +1,17 @@
 package Minigame;
 
+import Map.DoorsWithMiniGame;
+
 public class MinigameLoop implements Runnable {
     private boolean running = true;
+    
+DoorsWithMiniGame doorsWithMiniGame;
 
-    MinigameFrame frame = new MinigameFrame();
+    public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame) {
+        this.doorsWithMiniGame = doorsWithMiniGame;
+    }
+
+    MinigameFrame frame = new MinigameFrame(doorsWithMiniGame);
 
 
     @Override

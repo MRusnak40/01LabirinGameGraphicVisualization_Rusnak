@@ -143,6 +143,19 @@ public class Player extends Rectangle {
                     currenty = y;
 
                 } else if (maze[row][col] == 5) {//texture minigame doors
+
+                    isSolving = true;
+
+                   doorsWithMiniGame.miniGame();
+
+                    if (doorsWithMiniGame.isUnlocked()) {
+                        wall.maze[row][col] = 0;
+                        isSolving = false;
+                    }else {
+                        frame.gameOver = true;
+                        isSolving=false;
+                    }
+
                     wall.maze[row][col] = 0;
                     x = nextX;
                     y = nextY;

@@ -5,18 +5,21 @@ import MainLoop.GameLoop;
 import MainLoop.MyFrame;
 import Minigame.MinigameFrame;
 import Minigame.MinigameLoop;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 
 public class DoorsWithMiniGame extends Doors {
     public DoorsWithMiniGame(boolean isUnlocked) {
         super(isUnlocked);
+
     }
 
+    MinigameLoop minigameLoop;
 
     public void miniGame() {
         new Thread(() -> {
-            MinigameLoop minigameLoop = new MinigameLoop();
+            minigameLoop = new MinigameLoop(this);
             Thread thread = new Thread(minigameLoop);
             thread.start();
 
@@ -29,4 +32,7 @@ public class DoorsWithMiniGame extends Doors {
 
 
     }
+
+
+
 }
