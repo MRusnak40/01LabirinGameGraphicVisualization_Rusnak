@@ -6,39 +6,38 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import MainLoop.MyFrame;
 import Map.Walls;
 import Map.DoorsWithMiniGame;
 
-public class MinigameFrame extends JFrame {
-    Image image;
-    Graphics graphics;
+public class MinigameFrame extends JDialog {
+
     private int widthWindow;
     private int heightWindow;
-    private String name;
     BufferedImage bufferedImage;
     Graphics2D g2;
     boolean win = false;
     boolean gameOver = false;
     Box player;
     Box enemy;
-    ImageIcon icon = new ImageIcon("Files/playerIcon.png");
     Map map = new Map();
     DoorsWithMiniGame doorsWithMiniGame;
+    MyFrame myFrame;
 
-    public MinigameFrame(DoorsWithMiniGame doorsWithMiniGame) throws HeadlessException {
+    public MinigameFrame(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame) throws HeadlessException {
         this.doorsWithMiniGame = doorsWithMiniGame;
-        this.gameOver = gameOver;
+
+        this.myFrame = myFrame;
         widthWindow = 1000;
         heightWindow = 1000;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
-
+        this.setModal(true);
         createPlayers();
 
         this.setBackground(Color.BLACK);
 
-        //this.setLayout(null);
 
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -56,6 +55,7 @@ public class MinigameFrame extends JFrame {
         setIconImage(imageIcon.getImage());
 
         createWalls();
+
         this.setVisible(true);
 
 
@@ -65,6 +65,7 @@ public class MinigameFrame extends JFrame {
         map.setPreferredSize(new Dimension(widthWindow, heightWindow));
         this.add(map, BorderLayout.CENTER);
     }
+
 
     //By chat gpt
 
@@ -125,6 +126,7 @@ public class MinigameFrame extends JFrame {
             System.out.println("Colision");
             gameOver = true;
         } else {
+
             //  gameOver = false;
         }
 
@@ -151,42 +153,34 @@ public class MinigameFrame extends JFrame {
 //x 1250 y 930
         //y,x= 100
 
-        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"));
+        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this);
 
-        enemy = new Box(100, 100, 50, 50, Color.RED, this.map, new ImageIcon("Files/enemy.png"));
+        enemy = new Box(100, 100, 50, 50, Color.RED, this.map, new ImageIcon("Files/enemy.png"), this);
 
 
     }
 
 
     public void update() {
-
-        // Update game logic here
-
-        // Update player logic
-
-        // enemy.update();
-        //gameOver = checkColision();
-
-
-        // Update enemy logic
-        // Check for collisions
-
-        //System.out.println(player.listOfTracks.size());
+//add here game over from My frame and solving to false
 
         if (gameOver) {
 
 
             JOptionPane.showMessageDialog(null, "Game over");
-            Thread.interrupted();
             dispose();
+            Thread.currentThread().interrupt();
+
             doorsWithMiniGame.setUnlocked(false);
+
             gameOver = false;
 
         } else if (win && !gameOver) {
             JOptionPane.showMessageDialog(null, "Win");
-            Thread.interrupted();
             dispose();
+
+            Thread.currentThread().interrupt();
+
             doorsWithMiniGame.setUnlocked(true);
             win = false;
 

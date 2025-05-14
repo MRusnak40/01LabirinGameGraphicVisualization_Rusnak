@@ -1,17 +1,20 @@
 package Minigame;
 
+import MainLoop.MyFrame;
 import Map.DoorsWithMiniGame;
 
 public class MinigameLoop implements Runnable {
     private boolean running = true;
-    
-DoorsWithMiniGame doorsWithMiniGame;
 
-    public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame) {
+    DoorsWithMiniGame doorsWithMiniGame;
+    MyFrame myFrame;
+
+    public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame) {
         this.doorsWithMiniGame = doorsWithMiniGame;
+        this.myFrame = myFrame;
     }
 
-    MinigameFrame frame = new MinigameFrame(doorsWithMiniGame);
+    MinigameFrame frame = new MinigameFrame(doorsWithMiniGame,myFrame);
 
 
     @Override
@@ -30,7 +33,7 @@ DoorsWithMiniGame doorsWithMiniGame;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println(">" + Thread.currentThread().getName() + " Enemy thread");
         }
     }
 

@@ -104,30 +104,6 @@ public class StartWindow extends JFrame {
                     StartWindow.this.dispose();
 
 
-                    //  StartWindow.this.setVisible(false);
-/*
-                MyFrame frame = new MyFrame();
-                GameLoop loop = new GameLoop(frame);
-                FollowingPlayer followingPlayer = new FollowingPlayer(frame, loop);
-                Thread thread = new Thread(loop);
-                Thread thread2 = new Thread(followingPlayer);
-
-                thread.start();
-                thread2.start();
-
-                try {
-                    thread.join();
-                    thread2.join();
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-
-
-
- */
-
-
                     //By chat gpt
 
 
@@ -148,10 +124,14 @@ public class StartWindow extends JFrame {
                             Thread thread1 = new Thread(loop);
                             Thread thread2 = new Thread(followingPlayer);
 
-
+                            thread1.setName("GameLoop_Thread");
+                            thread2.setName("FollowingPlayer_Thread");
+                            thread1.setPriority(2);
+                            thread2.setPriority(1);
                             thread1.start();
                             thread2.start();
 
+/*
                             try {
                                 thread1.join();
                                 thread2.join();
@@ -159,6 +139,8 @@ public class StartWindow extends JFrame {
                                 ex.printStackTrace();
                             }
 
+
+ */
 
                         }).start();
                     });

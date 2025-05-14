@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 public class Player extends Rectangle {
 
@@ -29,7 +30,7 @@ public class Player extends Rectangle {
     //NameTag nameTag = new NameTag(name, this.x, this.y);
     NameTag nameTag;
     DoorsWithQestions doorsWithQestions = new DoorsWithQestions(false);
-    DoorsWithMiniGame doorsWithMiniGame = new DoorsWithMiniGame(false);
+    DoorsWithMiniGame doorsWithMiniGame;
     DoorsWithMath doorsWithMath = new DoorsWithMath(false);
     Walls walls;
 
@@ -145,23 +146,30 @@ public class Player extends Rectangle {
                 } else if (maze[row][col] == 5) {//texture minigame doors
 
                     isSolving = true;
+                    doorsWithMiniGame = new DoorsWithMiniGame(false,frame);
 
-                   doorsWithMiniGame.miniGame();
+                    doorsWithMiniGame.miniGame();
 
+/*
                     if (doorsWithMiniGame.isUnlocked()) {
                         wall.maze[row][col] = 0;
                         isSolving = false;
-                    }else {
+
+                    } else {
                         frame.gameOver = true;
-                        isSolving=false;
+                        isSolving = false;
+
                     }
 
-                    wall.maze[row][col] = 0;
+
+ */
                     x = nextX;
                     y = nextY;
 
                     currentx = x;
                     currenty = y;
+
+
                 } else if (maze[row][col] == 6) {//doors with qestions
 
                     isSolving = true;

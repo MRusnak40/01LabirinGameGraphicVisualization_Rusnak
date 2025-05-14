@@ -9,8 +9,10 @@ public class Box extends Rectangle {
     Color color;
     private static final int SPEED = 10;
     Map walls;
-public ImageIcon imageIcon;
-    Box(int x, int y, int width, int height, Color color, Map walls,ImageIcon imageIcon) {
+    public ImageIcon imageIcon;
+    MinigameFrame frame;
+
+    Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame) {
         this.x = x;
         this.y = y;
         this.walls = walls;
@@ -18,7 +20,7 @@ public ImageIcon imageIcon;
         this.height = height;
         this.color = color;
         this.imageIcon = imageIcon;
-
+        this.frame = frame;
 
     }
 
@@ -52,15 +54,14 @@ public ImageIcon imageIcon;
             if (maze[row][col] == 0) {
                 x = nextX;
                 y = nextY;
-            }else if(maze[row][col] == 2){
-
+            } else if (maze[row][col] == 2) {
+                frame.win = true;
             }
         }
 
     }
 
     public void draw(Graphics g) {
-
 
 
         // g.setColor(this.color);

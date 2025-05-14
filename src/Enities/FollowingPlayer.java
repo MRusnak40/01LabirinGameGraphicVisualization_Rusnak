@@ -22,7 +22,7 @@ GameLoop gameLoop;
             frame.updateEnemies();
            // System.out.println(Thread.currentThread().getName());
 
-
+            System.out.println(Thread.currentThread().getName());
             try {
                 Thread.sleep(setsDifficulty);
                 //mills is playble 70

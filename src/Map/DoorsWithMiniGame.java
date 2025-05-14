@@ -10,21 +10,27 @@ import org.w3c.dom.ls.LSOutput;
 import javax.swing.*;
 
 public class DoorsWithMiniGame extends Doors {
-    public DoorsWithMiniGame(boolean isUnlocked) {
-        super(isUnlocked);
 
+    MyFrame myFrame;
+
+    public DoorsWithMiniGame(boolean isUnlocked, MyFrame myFrame) {
+        super(isUnlocked);
+        this.myFrame = myFrame;
     }
 
     MinigameLoop minigameLoop;
 
     public void miniGame() {
+
         new Thread(() -> {
-            minigameLoop = new MinigameLoop(this);
-            Thread thread = new Thread(minigameLoop);
-            thread.start();
+            minigameLoop = new MinigameLoop(this,myFrame);
+            Thread thread5 = new Thread(minigameLoop);
+            thread5.setName("MiniGame_Thread");
+
+            thread5.start();
 
             try {
-                thread.join();
+                thread5.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -32,7 +38,6 @@ public class DoorsWithMiniGame extends Doors {
 
 
     }
-
 
 
 }

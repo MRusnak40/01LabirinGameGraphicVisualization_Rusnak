@@ -33,7 +33,7 @@ public class GameLoop implements Runnable {
                 restartGame();
 
             }
-
+            System.out.println(Thread.currentThread().getName());
             // Sleep for a short duration to control the loop speed
             try {
                 Thread.sleep(16); // Roughly 60 FPS
