@@ -126,8 +126,7 @@ public class StartWindow extends JFrame {
 
                             thread1.setName("GameLoop_Thread");
                             thread2.setName("FollowingPlayer_Thread");
-                            thread1.setPriority(2);
-                            thread2.setPriority(1);
+
                             thread1.start();
                             thread2.start();
 

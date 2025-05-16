@@ -43,7 +43,7 @@ public class MyFrame extends JFrame {
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
 
-        createPlayers();
+
 
         this.setBackground(Color.BLACK);
 
@@ -68,6 +68,7 @@ public class MyFrame extends JFrame {
         ImageIcon imageIcon = new ImageIcon("Files/betterQualityFrameIcon.png");
         setIconImage(imageIcon.getImage());
 
+        createPlayers();
 
         this.setVisible(true);
 

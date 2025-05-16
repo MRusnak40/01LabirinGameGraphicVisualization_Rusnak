@@ -18,7 +18,7 @@ GameLoop gameLoop;
 
     @Override
     public void run() {
-        while(gameLoop.running) {
+        while(gameLoop.running&& !frame.gameOver) {
             frame.updateEnemies();
            // System.out.println(Thread.currentThread().getName());
 

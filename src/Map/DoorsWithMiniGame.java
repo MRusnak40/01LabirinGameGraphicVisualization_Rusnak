@@ -1,6 +1,7 @@
 package Map;
 
 import Enities.FollowingPlayer;
+import Enities.Player;
 import MainLoop.GameLoop;
 import MainLoop.MyFrame;
 import Minigame.MinigameFrame;
@@ -12,18 +13,21 @@ import javax.swing.*;
 public class DoorsWithMiniGame extends Doors {
 
     MyFrame myFrame;
+Player player;
 
-    public DoorsWithMiniGame(boolean isUnlocked, MyFrame myFrame) {
+    public DoorsWithMiniGame(boolean isUnlocked, MyFrame myFrame, Player player) {
         super(isUnlocked);
+        this.player=player;
         this.myFrame = myFrame;
     }
 
-    MinigameLoop minigameLoop;
+
 
     public void miniGame() {
 
         new Thread(() -> {
-            minigameLoop = new MinigameLoop(this,myFrame);
+            MinigameFrame minigameFrame=new MinigameFrame(this,myFrame);
+           MinigameLoop minigameLoop = new MinigameLoop(this, myFrame,minigameFrame,player);
             Thread thread5 = new Thread(minigameLoop);
             thread5.setName("MiniGame_Thread");
 

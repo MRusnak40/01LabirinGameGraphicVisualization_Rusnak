@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import Map.DoorsWithMiniGame;
+
 public class Box extends Rectangle {
 
     Color color;
@@ -11,8 +13,9 @@ public class Box extends Rectangle {
     Map walls;
     public ImageIcon imageIcon;
     MinigameFrame frame;
+    DoorsWithMiniGame doorsWithMiniGame;
 
-    Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame) {
+    Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame, DoorsWithMiniGame doorsWithMiniGame) {
         this.x = x;
         this.y = y;
         this.walls = walls;
@@ -21,6 +24,7 @@ public class Box extends Rectangle {
         this.color = color;
         this.imageIcon = imageIcon;
         this.frame = frame;
+        this.doorsWithMiniGame = doorsWithMiniGame;
 
     }
 
@@ -55,6 +59,8 @@ public class Box extends Rectangle {
                 x = nextX;
                 y = nextY;
             } else if (maze[row][col] == 2) {
+
+                doorsWithMiniGame.setUnlocked(true);
                 frame.win = true;
             }
         }

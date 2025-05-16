@@ -56,6 +56,7 @@ public class MinigameFrame extends JDialog {
 
         createWalls();
 
+
         this.setVisible(true);
 
 
@@ -97,21 +98,8 @@ public class MinigameFrame extends JDialog {
     }
 
     public void endText() {
-        // Game over text
-        if (gameOver) {
-
-            g2.setColor(Color.BLACK);
-            g2.setFont(new Font("Arial", Font.BOLD, 140));
-            g2.drawString("Died", 50, 400);
-
-        } else if (win && !gameOver) {
-
-            g2.setColor(Color.BLACK);
-            g2.setFont(new Font("Arial", Font.BOLD, 140));
-            g2.drawString("Won", 50, 400);
 
 
-        }
     }
 
 
@@ -119,20 +107,16 @@ public class MinigameFrame extends JDialog {
 
 
     public void checkColision() {
-        if (player.intersects(enemy)) {
+        if (player.intersects(enemy) || enemy.intersects(player)) {
             gameOver = true;
-            System.out.println("Colision");
-        } else if (enemy.intersects(player)) {
-            System.out.println("Colision");
-            gameOver = true;
+
+
         } else {
+            gameOver = false;
 
-            //  gameOver = false;
+
         }
-
-
     }
-
 
     private class Al extends KeyAdapter {
         @Override
@@ -153,40 +137,22 @@ public class MinigameFrame extends JDialog {
 //x 1250 y 930
         //y,x= 100
 
-        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this);
+        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this, doorsWithMiniGame);
 
-        enemy = new Box(100, 100, 50, 50, Color.RED, this.map, new ImageIcon("Files/enemy.png"), this);
+        enemy = new Box(100, 100, 50, 50, Color.RED, this.map, new ImageIcon("Files/enemy.png"), this, doorsWithMiniGame);
 
 
     }
 
 
     public void update() {
+
 //add here game over from My frame and solving to false
 
-        if (gameOver) {
+        checkColision();
 
 
-            JOptionPane.showMessageDialog(null, "Game over");
-            dispose();
-            Thread.currentThread().interrupt();
-
-            doorsWithMiniGame.setUnlocked(false);
-
-            gameOver = false;
-
-        } else if (win && !gameOver) {
-            JOptionPane.showMessageDialog(null, "Win");
-            dispose();
-
-            Thread.currentThread().interrupt();
-
-            doorsWithMiniGame.setUnlocked(true);
-            win = false;
-
-        }
-
-
+        //there will be own gameover
     }
 
 

@@ -58,7 +58,7 @@ public class Player extends Rectangle {
         int nextX = x;
         int nextY = y;
 
-        if (!frame.gameOver) {
+        if (!frame.gameOver && !isSolving) {
             //creating list where enemy will follow
             listOfTracks.add(new Track(nextX, nextY));
             steps++;
@@ -105,6 +105,7 @@ public class Player extends Rectangle {
                         System.exit(0); // Ukončí program
                     } else {
                         isSolving = false;
+
                         frame.dispose();
                         new StartWindow();
                     }
@@ -145,24 +146,10 @@ public class Player extends Rectangle {
 
                 } else if (maze[row][col] == 5) {//texture minigame doors
 
-                    isSolving = true;
-                    doorsWithMiniGame = new DoorsWithMiniGame(false,frame);
-
-                    doorsWithMiniGame.miniGame();
-
-/*
-                    if (doorsWithMiniGame.isUnlocked()) {
-                        wall.maze[row][col] = 0;
-                        isSolving = false;
-
-                    } else {
-                        frame.gameOver = true;
-                        isSolving = false;
-
-                    }
+                    DoorsWithMiniGame doorsWithMiniGamos = new DoorsWithMiniGame(false, frame);
+                    doorsWithMiniGamos.miniGame();
 
 
- */
                     x = nextX;
                     y = nextY;
 
