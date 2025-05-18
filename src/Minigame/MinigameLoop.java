@@ -12,10 +12,10 @@ public class MinigameLoop implements Runnable {
     MinigameFrame minigameFrame;
     Player player;
 
-    public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, MinigameFrame minigameFrame, Player player) {
+    public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, Player player) {
         this.doorsWithMiniGame = doorsWithMiniGame;
         this.myFrame = myFrame;
-        this.minigameFrame = minigameFrame;
+        this.minigameFrame = new MinigameFrame(doorsWithMiniGame, myFrame, this,player);
         this.player = player;
     }
 
@@ -24,13 +24,17 @@ public class MinigameLoop implements Runnable {
     public void run() {
         while (runningMiniGame) {
 
-            minigameFrame.repaint();
             minigameFrame.update();
+            minigameFrame.repaint();
+
 //set if game over then frame game over
 
             if (minigameFrame.win && !minigameFrame.gameOver) {
                 doorsWithMiniGame.setUnlocked(true);
+
+                player.maze[player.rowCurrnet][player.colCurrent] = 0;
                 minigameFrame.dispose();
+
                 runningMiniGame = false;
                 player.isSolving = false;
             } else if (minigameFrame.gameOver) {
@@ -39,6 +43,15 @@ public class MinigameLoop implements Runnable {
                 myFrame.gameOver = true;
                 runningMiniGame = false;
                 player.isSolving = false;
+            } else {
+                doorsWithMiniGame.setUnlocked(false);
+
+                myFrame.gameOver = true;
+                runningMiniGame = false;
+                player.isSolving = false;
+                minigameFrame.dispose();
+
+
             }
 
             // Sleep for a short duration to control the loop speed
@@ -53,5 +66,11 @@ public class MinigameLoop implements Runnable {
         }
     }
 
+    public boolean isRunningMiniGame() {
+        return runningMiniGame;
+    }
 
+    public void setRunningMiniGame(boolean runningMiniGame) {
+        this.runningMiniGame = runningMiniGame;
+    }
 }

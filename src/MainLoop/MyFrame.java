@@ -44,7 +44,6 @@ public class MyFrame extends JFrame {
         this.setSize(widthWindow, heightWindow);
 
 
-
         this.setBackground(Color.BLACK);
 
         //this.setLayout(null);
@@ -80,7 +79,6 @@ public class MyFrame extends JFrame {
         walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
         this.add(walls, BorderLayout.CENTER);
     }
-
 
 
     //By chat gpt
@@ -124,9 +122,6 @@ public class MyFrame extends JFrame {
 
 
     //				 ↑			  ↑					↑
-
-
-
 
 
     public void checkColision() {

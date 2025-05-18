@@ -53,13 +53,11 @@ public class GameLoop implements Runnable {
                 JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
         if (result == JOptionPane.OK_OPTION) {
-            frame.gameOver = false;
 
+            frame.gameOver = false;
 
         }
     }
 
-        public void stop () {
-            running = false;
-        }
+
     }

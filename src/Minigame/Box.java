@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import Enities.Player;
 import Map.DoorsWithMiniGame;
 
 public class Box extends Rectangle {
@@ -13,9 +14,11 @@ public class Box extends Rectangle {
     Map walls;
     public ImageIcon imageIcon;
     MinigameFrame frame;
+    MinigameLoop loop;
     DoorsWithMiniGame doorsWithMiniGame;
+    Player player;
 
-    Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame, DoorsWithMiniGame doorsWithMiniGame) {
+    Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame, DoorsWithMiniGame doorsWithMiniGame, MinigameLoop loop, Player player) {
         this.x = x;
         this.y = y;
         this.walls = walls;
@@ -25,7 +28,8 @@ public class Box extends Rectangle {
         this.imageIcon = imageIcon;
         this.frame = frame;
         this.doorsWithMiniGame = doorsWithMiniGame;
-
+        this.loop = loop;
+        this.player = player;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -59,9 +63,29 @@ public class Box extends Rectangle {
                 x = nextX;
                 y = nextY;
             } else if (maze[row][col] == 2) {
-
                 doorsWithMiniGame.setUnlocked(true);
+
+                player.maze[player.rowCurrnet][player.colCurrent] = 0;
+
+
+                loop.setRunningMiniGame(false);
+
+                player.isSolving = false;
+
+
                 frame.win = true;
+
+                loop.setRunningMiniGame(false);
+
+                frame.dispose();
+            } else if (maze[row][col] == 1) {
+                //death
+                doorsWithMiniGame.setUnlocked(false);
+                frame.dispose();
+                frame.myFrame.gameOver = true;
+                loop.setRunningMiniGame(false);
+                player.isSolving = false;
+
             }
         }
 

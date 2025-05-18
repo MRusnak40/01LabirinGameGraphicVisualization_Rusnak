@@ -6,34 +6,38 @@ import MainLoop.MyFrame;
 public class FollowingPlayer implements Runnable {
 
     private int currentx;
-    private int setsDifficulty=100;
+    private int setsDifficulty = 100;
     MyFrame frame;
-GameLoop gameLoop;
+    GameLoop gameLoop;
 
-    public FollowingPlayer(MyFrame frame,GameLoop gameLoop,int setsDifficulty) {
+    public FollowingPlayer(MyFrame frame, GameLoop gameLoop, int setsDifficulty) {
         this.frame = frame;
-        this.gameLoop= gameLoop;
-        this.setsDifficulty=setsDifficulty;
+        this.gameLoop = gameLoop;
+        this.setsDifficulty = setsDifficulty;
     }
 
     @Override
     public void run() {
-        while(gameLoop.running&& !frame.gameOver) {
-            frame.updateEnemies();
-           // System.out.println(Thread.currentThread().getName());
+        ;
+        while (gameLoop.running) {
+            if (!frame.gameOver) {
+                frame.updateEnemies();
+                // System.out.println(Thread.currentThread().getName());
 
-            System.out.println(Thread.currentThread().getName());
-            try {
-                Thread.sleep(setsDifficulty);
-                //mills is playble 70
+                System.out.println(Thread.currentThread().getName());
+
+
+            }
+            try {  //mills is playble 70
                 //62 hard
                 //80 easy
-
+                Thread.sleep(setsDifficulty);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            System.out.println("Enemy stoped moving " + gameLoop.running + " frame game over " + frame.gameOver + " " + Thread.currentThread().getName());
         }
-        System.out.println("Enemy stoped moving");
+
     }
 
     public int getSetsDifficulty() {

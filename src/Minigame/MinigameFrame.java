@@ -6,6 +6,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import Enities.Player;
 import MainLoop.MyFrame;
 import Map.Walls;
 import Map.DoorsWithMiniGame;
@@ -19,17 +20,18 @@ public class MinigameFrame extends JDialog {
     boolean win = false;
     boolean gameOver = false;
     Box player;
-    Box enemy;
     Map map = new Map();
     DoorsWithMiniGame doorsWithMiniGame;
     MyFrame myFrame;
-
-    public MinigameFrame(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame) throws HeadlessException {
+    MinigameLoop loop;
+Player mainPlayer;
+    public MinigameFrame(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, MinigameLoop loop,Player player) throws HeadlessException {
         this.doorsWithMiniGame = doorsWithMiniGame;
-
+        this.loop = loop;
         this.myFrame = myFrame;
         widthWindow = 1000;
         heightWindow = 1000;
+        this.mainPlayer = player;
 
         this.setTitle("Advanture labirint");
         this.setSize(widthWindow, heightWindow);
@@ -86,7 +88,7 @@ public class MinigameFrame extends JDialog {
         // Vykresli herní objekty
         map.paint(g2);
         player.draw(g2);
-        enemy.draw(g2);
+
 
         endText();
 
@@ -106,24 +108,10 @@ public class MinigameFrame extends JDialog {
     //				 ↑			  ↑					↑
 
 
-    public void checkColision() {
-        if (player.intersects(enemy) || enemy.intersects(player)) {
-            gameOver = true;
-
-
-        } else {
-            gameOver = false;
-
-
-        }
-    }
-
     private class Al extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
-
-            checkColision();
 
             repaint();
 
@@ -137,9 +125,7 @@ public class MinigameFrame extends JDialog {
 //x 1250 y 930
         //y,x= 100
 
-        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this, doorsWithMiniGame);
-
-        enemy = new Box(100, 100, 50, 50, Color.RED, this.map, new ImageIcon("Files/enemy.png"), this, doorsWithMiniGame);
+        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this, doorsWithMiniGame,loop,mainPlayer);
 
 
     }
@@ -149,7 +135,9 @@ public class MinigameFrame extends JDialog {
 
 //add here game over from My frame and solving to false
 
-        checkColision();
+
+        System.out.println("Game over" + gameOver);
+        System.out.println("Win" + win);
 
 
         //there will be own gameover

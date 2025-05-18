@@ -20,11 +20,11 @@ public class Player extends Rectangle {
     public boolean isSolving = false;
     private String name = " ";
     public int steps;
-    public int currentx;
-    public int currenty;
-    public ImageIcon imageIcon;
-    public final int speed = 15;
-    public boolean isOnEndPlayer = false;
+    private int currentx;
+    private int currenty;
+    private ImageIcon imageIcon;
+    private final int speed = 15;
+    private boolean isOnEndPlayer = false;
     public ArrayList<Track> listOfTracks;
     MyFrame frame;
     //NameTag nameTag = new NameTag(name, this.x, this.y);
@@ -33,7 +33,9 @@ public class Player extends Rectangle {
     DoorsWithMiniGame doorsWithMiniGame;
     DoorsWithMath doorsWithMath = new DoorsWithMath(false);
     Walls walls;
-
+    public int colCurrent;
+    public int rowCurrnet;
+public  int [][]maze;
     public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame, String name, Walls walls) {
         this.x = x;
         this.y = y;
@@ -52,11 +54,14 @@ public class Player extends Rectangle {
 
     public void keyPressed(KeyEvent e) {
 
-        int[][] maze = walls.getMaze();
+         maze = walls.getMaze();
+         wall.maze = maze;
         int cellSize = 40;
 
         int nextX = x;
         int nextY = y;
+
+        System.out.println(frame.gameOver + " " + isSolving);
 
         if (!frame.gameOver && !isSolving) {
             //creating list where enemy will follow
@@ -146,8 +151,16 @@ public class Player extends Rectangle {
 
                 } else if (maze[row][col] == 5) {//texture minigame doors
 
-                    DoorsWithMiniGame doorsWithMiniGamos = new DoorsWithMiniGame(false, frame);
+                    isSolving = true;
+
+                    colCurrent = col;
+                    rowCurrnet = row;
+
+                    DoorsWithMiniGame doorsWithMiniGamos = new DoorsWithMiniGame(false, frame, this);
                     doorsWithMiniGamos.miniGame();
+
+
+
 
 
                     x = nextX;
