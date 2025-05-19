@@ -17,6 +17,17 @@ public class Enemy extends Rectangle {
     Player player;
     MyFrame frame;
 
+    /**
+     * Creates a new Enemy object with specified position, dimensions and references.
+     *
+     * @param x      The x-coordinate position of the enemy
+     * @param y      The y-coordinate position of the enemy
+     * @param width  The width of the enemy
+     * @param height The height of the enemy
+     * @param color  The color of the enemy
+     * @param player Reference to the player object
+     * @param frame  Reference to the main game frame
+     */
     public Enemy(int x, int y, int width, int height, Color color, Player player, MyFrame frame) {
         super(x, y, width, height);
         this.color = color;
@@ -25,6 +36,10 @@ public class Enemy extends Rectangle {
     }
 
 
+    /**
+     * Updates the enemy's position based on the player's movement track.
+     * Enemy follows player's path if player has moved more than 5 steps and is not solving a puzzle.
+     */
     public void movement() {
         if (player.steps > 5) {
             if(!player.isSolving) {
@@ -49,6 +64,9 @@ public class Enemy extends Rectangle {
     }
 
 
+    /**
+     * Updates the enemy's state by moving it, checking for collisions and repainting the frame.
+     */
     public void update() {
         // Update enemy position or logic
         /*
@@ -62,6 +80,11 @@ public class Enemy extends Rectangle {
     }
 
 
+    /**
+     * Draws the enemy on the specified Graphics context using an image icon.
+     *
+     * @param g The Graphics context on which to draw the enemy
+     */
     public void draw(Graphics g) {
         imageIcon = new ImageIcon("Files/enemy.png");
         // g.setColor(this.color);

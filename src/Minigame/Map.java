@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * Represents a game map panel that displays a maze with walls, roads, and finish point.
+ * The maze is rendered using loaded textures for each element.
+ */
 public class Map extends JPanel {
     private static final int CELL_SIZE = 100; // size cell
     private BufferedImage wallTexture; // Textura zdi
@@ -26,7 +30,10 @@ public class Map extends JPanel {
     };
 
 
-    // constructor
+    /**
+     * Constructs a new Map instance.
+     * Initializes the map by loading required textures for walls, roads, and finish point from files.
+     */
     public Map() {
         try {
             // Načtení textury zdi
@@ -46,7 +53,14 @@ public class Map extends JPanel {
     }
 
 
-    // method for paint
+    /**
+     * Renders the maze components on the panel.
+     * Draws walls, roads, and finish point using their respective textures.
+     * Each cell is drawn according to the maze array where:
+     * 1 represents walls, 0 represents roads, and 2 represents the finish point.
+     *
+     * @param g the Graphics object used for painting
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -87,9 +101,15 @@ public class Map extends JPanel {
     }
 
 
+    /**
+     * Returns the current maze layout.
+     *
+     * @return 2D array representing the maze where 1 is wall, 0 is road, and 2 is finish
+     */
     public int[][] getMaze() {
         return maze;
     }
+
 
     public void setMaze(int[][] maze) {
         this.maze = maze;

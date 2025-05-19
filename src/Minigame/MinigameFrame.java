@@ -25,6 +25,16 @@ public class MinigameFrame extends JDialog {
     MyFrame myFrame;
     MinigameLoop loop;
 Player mainPlayer;
+
+    /**
+     * Constructor for MinigameFrame class
+     *
+     * @param doorsWithMiniGame The door object that triggered this minigame
+     * @param myFrame           The main game frame reference
+     * @param loop              The minigame loop object
+     * @param player            The main player object
+     * @throws HeadlessException If GraphicsEnvironment.isHeadless() returns true
+     */
     public MinigameFrame(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, MinigameLoop loop,Player player) throws HeadlessException {
         this.doorsWithMiniGame = doorsWithMiniGame;
         this.loop = loop;
@@ -64,6 +74,9 @@ Player mainPlayer;
 
     }
 
+    /**
+     * Creates and initializes the walls for the minigame
+     */
     public void createWalls() {
         map.setPreferredSize(new Dimension(widthWindow, heightWindow));
         this.add(map, BorderLayout.CENTER);
@@ -72,6 +85,11 @@ Player mainPlayer;
 
     //By chat gpt
 
+    /**
+     * Paints the game components using double buffering
+     *
+     * @param g The Graphics object to paint on
+     */
     @Override
     public void paint(Graphics g) {
         // Vytvoření off-screen bufferu (pouze JEDNOU, ne pokaždé v paint)
@@ -90,7 +108,7 @@ Player mainPlayer;
         player.draw(g2);
 
 
-        endText();
+
 
 
         // Přenes obraz z bufferu na obrazovku
@@ -99,16 +117,21 @@ Player mainPlayer;
         g2.dispose(); // ukončíme práci s g2, ne s g!
     }
 
-    public void endText() {
 
-
-    }
 
 
     //				 ↑			  ↑					↑
 
 
+    /**
+     * Inner class for handling keyboard input
+     */
     private class Al extends KeyAdapter {
+        /**
+         * Handles key press events
+         *
+         * @param e The KeyEvent object containing information about the key press
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
@@ -119,6 +142,9 @@ Player mainPlayer;
     }
 
 
+    /**
+     * Creates and initializes the player object
+     */
     public void createPlayers() {
 
 
@@ -131,6 +157,9 @@ Player mainPlayer;
     }
 
 
+    /**
+     * Updates the game state
+     */
     public void update() {
 
 //add here game over from My frame and solving to false

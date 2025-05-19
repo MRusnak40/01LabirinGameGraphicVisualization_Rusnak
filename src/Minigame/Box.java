@@ -18,6 +18,21 @@ public class Box extends Rectangle {
     DoorsWithMiniGame doorsWithMiniGame;
     Player player;
 
+    /**
+     * Creates a new Box instance for the minigame
+     *
+     * @param x                 initial x-coordinate position
+     * @param y                 initial y-coordinate position
+     * @param width             width of the box
+     * @param height            height of the box
+     * @param color             color of the box
+     * @param walls             reference to the maze walls
+     * @param imageIcon         image icon for box visualization
+     * @param frame             reference to the minigame frame
+     * @param doorsWithMiniGame reference to the door with minigame
+     * @param loop              reference to the minigame loop
+     * @param player            reference to the player
+     */
     Box(int x, int y, int width, int height, Color color, Map walls, ImageIcon imageIcon, MinigameFrame frame, DoorsWithMiniGame doorsWithMiniGame, MinigameLoop loop, Player player) {
         this.x = x;
         this.y = y;
@@ -32,6 +47,11 @@ public class Box extends Rectangle {
         this.player = player;
     }
 
+    /**
+     * Handles keyboard input for box movement and collision detection
+     *
+     * @param e the key event containing information about the pressed key
+     */
     public void keyPressed(KeyEvent e) {
         int nextX = x;
         int nextY = y;
@@ -91,6 +111,11 @@ public class Box extends Rectangle {
 
     }
 
+    /**
+     * Renders the box on the screen
+     *
+     * @param g the graphics context used for drawing
+     */
     public void draw(Graphics g) {
 
 

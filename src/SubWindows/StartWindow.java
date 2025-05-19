@@ -20,6 +20,10 @@ public class StartWindow extends JFrame {
     public boolean isPressedMode = false;
     private int modes = 0;
 
+    /**
+     * Constructor for the StartWindow class.
+     * Initializes the main start window with basic settings and components.
+     */
     public StartWindow() {
 
         this.setTitle("Start");
@@ -41,6 +45,10 @@ public class StartWindow extends JFrame {
     }
 
 
+    /**
+     * Initializes and adds all GUI components to the start window.
+     * Creates menu bar, help menu, buttons and background image.
+     */
     public void Components() {
         // menu bar on window
         JMenuBar menuBar = new JMenuBar();
@@ -185,28 +193,35 @@ public class StartWindow extends JFrame {
 
     }
 
+    /**
+     * Gets the player's name.
+     *
+     * @return The name of the player
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the player's name.
+     *
+     * @param name The name to set for the player
+     */
     @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getChooseOfMode() {
-        return chooseOfMode;
-    }
 
-    public void setChooseOfMode(int chooseOfMode) {
-        this.chooseOfMode = chooseOfMode;
-    }
 
-    public int getModes() {
-        return modes;
-    }
 
+
+    /**
+     * Sets the game modes setting.
+     *
+     * @param modes The modes value to set
+     */
     public void setModes(int modes) {
         this.modes = modes;
     }

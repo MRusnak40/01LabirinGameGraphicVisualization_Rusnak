@@ -12,6 +12,13 @@ public class MinigameLoop implements Runnable {
     MinigameFrame minigameFrame;
     Player player;
 
+    /**
+     * Constructor for MinigameLoop class that initializes the minigame components
+     *
+     * @param doorsWithMiniGame The door containing the minigame
+     * @param myFrame           The main game frame
+     * @param player            The player object
+     */
     public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, Player player) {
         this.doorsWithMiniGame = doorsWithMiniGame;
         this.myFrame = myFrame;
@@ -20,6 +27,10 @@ public class MinigameLoop implements Runnable {
     }
 
 
+    /**
+     * Main game loop that handles the minigame state and updates
+     * Controls win/loss conditions and updates game state
+     */
     @Override
     public void run() {
         while (runningMiniGame) {
@@ -66,10 +77,13 @@ public class MinigameLoop implements Runnable {
         }
     }
 
-    public boolean isRunningMiniGame() {
-        return runningMiniGame;
-    }
 
+
+    /**
+     * Sets the running state of the minigame
+     *
+     * @param runningMiniGame boolean value to set the minigame's running state
+     */
     public void setRunningMiniGame(boolean runningMiniGame) {
         this.runningMiniGame = runningMiniGame;
     }

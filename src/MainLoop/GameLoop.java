@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GameLoop implements Runnable {
 
-    private MyFrame frame;
+    public MyFrame frame;
     public boolean running;
 
 
@@ -59,5 +59,21 @@ public class GameLoop implements Runnable {
         }
     }
 
-
+    public MyFrame getFrame() {
+        return frame;
     }
+
+    public void setFrame(MyFrame frame) {
+        this.frame = frame;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+
+}

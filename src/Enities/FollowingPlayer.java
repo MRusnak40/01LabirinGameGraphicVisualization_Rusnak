@@ -10,12 +10,23 @@ public class FollowingPlayer implements Runnable {
     MyFrame frame;
     GameLoop gameLoop;
 
+    /**
+     * Constructor for the FollowingPlayer class
+     *
+     * @param frame The game frame instance
+     * @param gameLoop The game loop instance
+     * @param setsDifficulty The difficulty setting that affects enemy movement speed
+     */
     public FollowingPlayer(MyFrame frame, GameLoop gameLoop, int setsDifficulty) {
         this.frame = frame;
         this.gameLoop = gameLoop;
         this.setsDifficulty = setsDifficulty;
     }
 
+    /**
+     * Runs the enemy movement loop. Updates enemy positions while the game is running
+     * and not in game over state. Controls the movement speed through sleep duration.
+     */
     @Override
     public void run() {
         ;
@@ -40,9 +51,11 @@ public class FollowingPlayer implements Runnable {
 
     }
 
+
     public int getSetsDifficulty() {
         return setsDifficulty;
     }
+
 
     public void setSetsDifficulty(int setsDifficulty) {
         this.setsDifficulty = setsDifficulty;

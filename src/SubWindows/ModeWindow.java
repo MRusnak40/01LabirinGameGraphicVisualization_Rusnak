@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 public class ModeWindow extends JDialog {
     StartWindow startWindow;
 
+    /**
+     * Creates a new dialog window for difficulty mode selection
+     *
+     * @param startWindow The parent StartWindow instance this dialog belongs to
+     */
     public ModeWindow(StartWindow startWindow) {
         this.startWindow = startWindow;
 
@@ -26,6 +31,10 @@ public class ModeWindow extends JDialog {
     }
 
 
+    /**
+     * Adds and configures all UI components including difficulty selection buttons
+     * to the mode window
+     */
     public void addComponents() {
         JPanel panel = new JPanel();
         panel.setLayout(null);

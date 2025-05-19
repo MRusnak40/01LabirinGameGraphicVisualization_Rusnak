@@ -36,6 +36,21 @@ public class Player extends Rectangle {
     public int colCurrent;
     public int rowCurrnet;
 public  int [][]maze;
+
+    /**
+     * Creates a new Player instance with specified parameters
+     *
+     * @param x         initial x coordinate
+     * @param y         initial y coordinate
+     * @param width     width of the player
+     * @param height    height of the player
+     * @param color     color of the player
+     * @param imageIcon player's image icon
+     * @param wall      wall object for collision detection
+     * @param frame     main game frame
+     * @param name      player's name
+     * @param walls     walls object for maze navigation
+     */
     public Player(int x, int y, int width, int height, Color color, ImageIcon imageIcon, Walls wall, MyFrame frame, String name, Walls walls) {
         this.x = x;
         this.y = y;
@@ -52,6 +67,11 @@ public  int [][]maze;
     }
 
 
+    /**
+     * Handles keyboard input for player movement and interactions
+     *
+     * @param e KeyEvent containing the pressed key information
+     */
     public void keyPressed(KeyEvent e) {
 
          maze = walls.getMaze();
@@ -197,6 +217,11 @@ public  int [][]maze;
     }
 
 
+    /**
+     * Draws the player and their name tag on the screen
+     *
+     * @param g Graphics object used for drawing
+     */
     public void draw(Graphics g) {
         imageIcon = new ImageIcon("Files/Player.png");
 
@@ -207,6 +232,9 @@ public  int [][]maze;
         nameTag.draw(g);
     }
 
+    /**
+     * Updates the player's state, including name tag position
+     */
     public void update() {
         // Update enemy position or logic
         nameTag.setPosition(this.x, this.y);
@@ -214,9 +242,11 @@ public  int [][]maze;
 
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;

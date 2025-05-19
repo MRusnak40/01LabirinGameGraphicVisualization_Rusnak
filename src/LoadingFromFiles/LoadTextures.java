@@ -5,10 +5,19 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * Class responsible for loading texture images from files.
+ */
 public class LoadTextures {
     private String fileName;
 
 
+    /**
+     * Loads an image from the specified file path and converts it to an ImageIcon.
+     *
+     * @param path The file path to the image
+     * @return ImageIcon containing the loaded image, or null if loading fails
+     */
     public static ImageIcon loadImage(String path) {
         try {
 

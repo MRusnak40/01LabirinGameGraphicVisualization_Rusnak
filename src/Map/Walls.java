@@ -49,7 +49,10 @@ public class Walls extends JPanel {
     };
 
 
-    // constructor
+    /**
+     * Constructor for Walls class.
+     * Initializes wall textures by loading them from files.
+     */
     public Walls() {
         try {
             // Načtení textury zdi
@@ -74,7 +77,12 @@ public class Walls extends JPanel {
     }
 
 
-    // method for paint
+    /**
+     * Paints the maze components including walls, roads, and doors.
+     * Overrides the paintComponent method from JPanel.
+     *
+     * @param g Graphics object used for painting
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -131,9 +139,15 @@ public class Walls extends JPanel {
     }
 
 
+    /**
+     * Gets the current maze layout.
+     *
+     * @return 2D integer array representing the maze layout
+     */
     public int[][] getMaze() {
         return maze;
     }
+
 
     public void setMaze(int[][] maze) {
         this.maze = maze;

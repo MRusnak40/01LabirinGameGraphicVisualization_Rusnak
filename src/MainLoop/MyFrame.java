@@ -75,6 +75,11 @@ public class MyFrame extends JFrame {
     }
 
     //building walls
+
+    /**
+     * Creates and initializes walls in the game window.
+     * Sets preferred size for walls and adds them to the frame.
+     */
     public void createWalls() {
         walls.setPreferredSize(new Dimension(widthWindow, heightWindow));
         this.add(walls, BorderLayout.CENTER);
@@ -84,6 +89,10 @@ public class MyFrame extends JFrame {
     //By chat gpt
 
     @Override
+    /**
+     * Paints all game components using double buffering technique.
+     * @param g Graphics context to paint on
+     */
     public void paint(Graphics g) {
         // Vytvoření off-screen bufferu (pouze JEDNOU, ne pokaždé v paint)
         if (bufferedImage == null) {
@@ -110,6 +119,10 @@ public class MyFrame extends JFrame {
         g2.dispose(); // ukončíme práci s g2, ne s g!
     }
 
+    /**
+     * Draws game over text when the game ends.
+     * Text is drawn in red color if gameOver flag is true.
+     */
     public void endText() {
         // Game over text
         if (gameOver) {
@@ -124,6 +137,10 @@ public class MyFrame extends JFrame {
     //				 ↑			  ↑					↑
 
 
+    /**
+     * Checks for collisions between player and enemy.
+     * Sets gameOver flag to true if collision is detected.
+     */
     public void checkColision() {
         if (player.intersects(enemy)) {
             gameOver = true;
@@ -139,6 +156,10 @@ public class MyFrame extends JFrame {
     }
 
 
+    /**
+     * Inner class handling keyboard input events.
+     * Updates player position and checks for collisions on key press.
+     */
     public class Al extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -152,6 +173,9 @@ public class MyFrame extends JFrame {
     }
 
 
+    /**
+     * Initializes player and enemy objects with their starting positions and properties.
+     */
     public void createPlayers() {
 //x 1250 y 930
         //y,x= 100
@@ -162,10 +186,18 @@ public class MyFrame extends JFrame {
 
     }
 
+    /**
+     * Updates the state of enemy objects.
+     * Currently only updates single enemy instance.
+     */
     public void updateEnemies() {
         enemy.update();
     }
 
+    /**
+     * Updates game state including player position and checks game over condition.
+     * Resets players if game is over.
+     */
     public void update() {
 
         // Update game logic here
@@ -192,6 +224,11 @@ public class MyFrame extends JFrame {
 
     }
 
+    /**
+     * Sets the name for the frame.
+     *
+     * @param nameos Name to be set, if null empty string is used
+     */
     public void setName(String nameos) {
         if (nameos != null) {
 
@@ -202,6 +239,7 @@ public class MyFrame extends JFrame {
     }
 
     @Override
+
     public String getName() {
         return name;
     }
