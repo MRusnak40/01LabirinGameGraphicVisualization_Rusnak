@@ -16,16 +16,17 @@ public class DoorsWithQestions extends Doors {
 
     public DoorsWithQestions(boolean isUnlocked) {
         super(isUnlocked);
-        setQestions();
+        setQestions("TextFiles/Qestions");
 
     }
 
-    public void setQestions() {
+    public ArrayList<Qestions> setQestions(String path) {
 
 
-        qestions = loadQestions.qestionsList("TextFiles/Qestions");
+        qestions = loadQestions.qestionsList(path);
 
 
+        return qestions;
     }
 
     public boolean answer() {

@@ -125,7 +125,7 @@ Player mainPlayer;
 //x 1250 y 930
         //y,x= 100
 
-        player = new Box(100, 200, 50, 50, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this, doorsWithMiniGame,loop,mainPlayer);
+        player = new Box(100, 200, 85, 85, Color.CYAN, this.map, new ImageIcon("Files/Player.png"), this, doorsWithMiniGame,loop,mainPlayer);
 
 
     }
