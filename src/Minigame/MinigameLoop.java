@@ -22,7 +22,7 @@ public class MinigameLoop implements Runnable {
     public MinigameLoop(DoorsWithMiniGame doorsWithMiniGame, MyFrame myFrame, Player player) {
         this.doorsWithMiniGame = doorsWithMiniGame;
         this.myFrame = myFrame;
-        this.minigameFrame = new MinigameFrame(doorsWithMiniGame, myFrame, this,player);
+        this.minigameFrame = new MinigameFrame(doorsWithMiniGame, myFrame, this, player);
         this.player = player;
     }
 
@@ -44,16 +44,18 @@ public class MinigameLoop implements Runnable {
                 doorsWithMiniGame.setUnlocked(true);
 
                 player.maze[player.rowCurrnet][player.colCurrent] = 0;
-                minigameFrame.dispose();
+
 
                 runningMiniGame = false;
                 player.isSolving = false;
+                minigameFrame.dispose();
             } else if (minigameFrame.gameOver) {
                 doorsWithMiniGame.setUnlocked(false);
-                minigameFrame.dispose();
+
                 myFrame.gameOver = true;
                 runningMiniGame = false;
                 player.isSolving = false;
+                minigameFrame.dispose();
             } else {
                 doorsWithMiniGame.setUnlocked(false);
 
@@ -76,7 +78,6 @@ public class MinigameLoop implements Runnable {
             System.out.println(">" + Thread.currentThread().getName() + " Enemy thread");
         }
     }
-
 
 
     /**

@@ -1,5 +1,6 @@
-package MainLoop;
+package Tests;
 
+import MainLoop.GameLoop;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
