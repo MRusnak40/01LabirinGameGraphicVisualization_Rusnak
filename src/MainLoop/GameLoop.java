@@ -37,12 +37,10 @@ public class GameLoop implements Runnable {
             // Sleep for a short duration to control the loop speed
             try {
                 Thread.sleep(16); // Roughly 60 FPS
-                //System.out.println(System.currentTimeMillis());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // System.out.println(Thread.currentThread().getName());
         }
     }
 
@@ -71,9 +69,6 @@ public class GameLoop implements Runnable {
         return running;
     }
 
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
 
 
 }

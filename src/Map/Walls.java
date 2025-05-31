@@ -149,7 +149,4 @@ public class Walls extends JPanel {
     }
 
 
-    public void setMaze(int[][] maze) {
-        this.maze = maze;
-    }
 }

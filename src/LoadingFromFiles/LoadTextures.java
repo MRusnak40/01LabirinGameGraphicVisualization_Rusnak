@@ -9,7 +9,7 @@ import java.io.File;
  * Class responsible for loading texture images from files.
  */
 public class LoadTextures {
-    private String fileName;
+
 
 
     /**

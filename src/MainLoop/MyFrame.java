@@ -200,18 +200,11 @@ public class MyFrame extends JFrame {
      */
     public void update() {
 
+
+// Update player logic
+        player.update();
+
         // Update game logic here
-
-        player.update(); // Update player logic
-
-        // enemy.update();
-        //gameOver = checkColision();
-
-
-        // Update enemy logic
-        // Check for collisions
-
-        //System.out.println(player.listOfTracks.size());
 
         if (gameOver) {
 

@@ -112,7 +112,16 @@ public class StartWindow extends JFrame {
                     StartWindow.this.dispose();
 
 
+
+
+
+
+
+
                     //By chat gpt
+
+
+
 
 
                     // creat GUI window (MyFrame) must be on EDT=Event Dispatch Thread
@@ -153,7 +162,12 @@ public class StartWindow extends JFrame {
                     });
 
 
+
 //	↑		↑	↑	↑	↑	↑	↑	↑	↑
+
+
+
+
 
 
                 }

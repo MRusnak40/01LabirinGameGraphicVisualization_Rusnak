@@ -79,11 +79,7 @@ public class Map extends JPanel {
                 } else if (maze[row][col] == 0) {
 
 
-                    /*
-                    // road
-                    g2d.setColor(Color.WHITE);
-                    g2d.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                     */
+
 //road
                     g2d.drawImage(roadTexture, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, null);
 
@@ -94,7 +90,6 @@ public class Map extends JPanel {
 
                 }
 
-                //System.out.println("Row: " + row + ", Col: " + col + ", X: " + (col * CELL_SIZE) + ", Y: " + (row * CELL_SIZE));
 
             }
         }
@@ -111,8 +106,5 @@ public class Map extends JPanel {
     }
 
 
-    public void setMaze(int[][] maze) {
-        this.maze = maze;
-    }
 }
 

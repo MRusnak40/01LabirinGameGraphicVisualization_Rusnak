@@ -70,7 +70,6 @@ public class MinigameLoop implements Runnable {
             // Sleep for a short duration to control the loop speed
             try {
                 Thread.sleep(16); // Roughly 60 FPS
-                //System.out.println(System.currentTimeMillis());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

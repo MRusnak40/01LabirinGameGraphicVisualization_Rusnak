@@ -117,11 +117,6 @@ public class Box extends Rectangle {
      * @param g the graphics context used for drawing
      */
     public void draw(Graphics g) {
-
-
-        // g.setColor(this.color);
-        // g.fillRect(this.x, this.y, this.width, this.height);
-
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
 
     }

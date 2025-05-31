@@ -68,12 +68,7 @@ public class Enemy extends Rectangle {
      * Updates the enemy's state by moving it, checking for collisions and repainting the frame.
      */
     public void update() {
-        // Update enemy position or logic
-        /*
-        movement();
 
-
-         */
         movement();
         frame.checkColision();
         frame.repaint();
@@ -87,8 +82,7 @@ public class Enemy extends Rectangle {
      */
     public void draw(Graphics g) {
         imageIcon = new ImageIcon("Files/enemy.png");
-        // g.setColor(this.color);
-        // g.fillRect(this.x, this.y, this.width, this.height);
+
         g.drawImage(imageIcon.getImage(), x, y, width, height, null);
 
     }

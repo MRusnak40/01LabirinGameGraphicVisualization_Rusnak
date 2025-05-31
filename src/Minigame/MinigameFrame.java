@@ -83,7 +83,15 @@ Player mainPlayer;
     }
 
 
+
+
+
     //By chat gpt
+
+
+
+
+
 
     /**
      * Paints the game components using double buffering
@@ -121,6 +129,13 @@ Player mainPlayer;
 
 
     //				 ↑			  ↑					↑
+
+
+
+
+
+
+
 
 
     /**
@@ -162,14 +177,13 @@ Player mainPlayer;
      */
     public void update() {
 
-//add here game over from My frame and solving to false
 
-
+//there will be own gameover
         System.out.println("Game over" + gameOver);
         System.out.println("Win" + win);
 
 
-        //there will be own gameover
+
     }
 
 

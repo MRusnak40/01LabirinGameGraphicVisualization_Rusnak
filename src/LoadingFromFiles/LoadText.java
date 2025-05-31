@@ -18,6 +18,7 @@ public  StringBuilder loadsText(String path) {
     try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         String line;
         while ((line = br.readLine()) != null) {
+            //reads  line and sets next line
             text.append(line).append(System.lineSeparator());
         }
     } catch (IOException e) {

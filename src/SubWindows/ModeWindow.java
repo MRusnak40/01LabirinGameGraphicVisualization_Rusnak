@@ -67,9 +67,7 @@ public class ModeWindow extends JDialog {
         easy.setBounds(160, 20, 100, 100);
         ImageIcon easyIcon = new ImageIcon("Files/EasyButton.png");
         easy.setIcon(easyIcon);
-        // easy.setContentAreaFilled(false);
-//easy.setBorderPainted(false);
-        // easy.setOpaque(false);
+
 
         easy.addActionListener(new ActionListener() {
             @Override
